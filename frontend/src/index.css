@@ -52,6 +52,14 @@ h6 {
   h3 { font-size: 1.75rem !important; }
 }
 
+.text-glow {
+  text-shadow: 0 0 20px rgba(184, 151, 90, 0.3);
+}
+
+.text-shadow-hard {
+  text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+}
+
 /* Luxury Buttons */
 .btn-luxury {
   background-color: var(--gold);

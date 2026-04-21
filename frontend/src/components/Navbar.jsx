@@ -25,8 +25,8 @@ const Navbar = () => {
     <nav className={`fixed w-full z-50 transition-all duration-500 ${scrolled ? 'glass-nav py-3' : 'bg-transparent py-6'}`}>
       <div className="container mx-auto px-6 flex justify-between items-center">
         <Link to="/" className="flex flex-col">
-          <span className={`font-serif text-2xl font-bold tracking-[0.2em] leading-none ${scrolled ? 'text-gold-dark' : 'text-white'}`}>TAJ VIEW</span>
-          <span className={`text-[10px] uppercase tracking-[0.5em] mt-1 ${scrolled ? 'text-charcoal/60' : 'text-white/70'}`}>Residency • Agra</span>
+          <span className={`font-serif text-2xl font-bold tracking-[0.2em] leading-none ${scrolled ? 'text-gold-dark' : 'text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]'}`}>TAJ VIEW</span>
+          <span className={`text-[10px] uppercase tracking-[0.5em] mt-1 ${scrolled ? 'text-charcoal/60' : 'text-white/90 drop-shadow-[0_1px_4px_rgba(0,0,0,0.5)]'}`}>Residency • Agra</span>
         </Link>
 
         {/* Desktop Links */}
@@ -35,8 +35,8 @@ const Navbar = () => {
             <Link
               key={link.name}
               to={link.path}
-              className={`text-xs uppercase tracking-widest font-medium transition-colors hover:text-gold ${
-                location.pathname === link.path ? 'text-gold' : scrolled ? 'text-charcoal' : 'text-white'
+              className={`text-[10px] uppercase tracking-[0.2em] font-bold transition-all hover:text-gold ${
+                location.pathname === link.path ? 'text-gold' : scrolled ? 'text-charcoal' : 'text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]'
               }`}
             >
               {link.name}
