@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { rooms } from '../utils/roomsData';
-import { Check, ArrowLeft, Calendar, Users, Info, ShieldCheck } from 'lucide-react';
+import { Check, ArrowLeft, Calendar, Users, Info, ShieldCheck, Star } from 'lucide-react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import { format, differenceInDays } from 'date-fns';
@@ -125,85 +125,72 @@ const RoomDetail = () => {
 
           {/* Booking Sidebar */}
           <div className="lg:col-span-1">
-            <div className="bg-white p-10 shadow-2xl border border-gold/10 sticky top-28">
-              <div className="mb-8 pb-8 border-b border-gold/10">
-                <span className="text-3xl font-serif font-bold text-charcoal">₹{room.price}</span>
-                <span className="text-charcoal/40 text-xs uppercase tracking-widest ml-2">/ night</span>
+            <div className="bg-charcoal p-10 shadow-2xl border border-gold/10 sticky top-28">
+              <div className="mb-10 pb-8 border-b border-gold/20 flex justify-between items-end">
+                <div>
+                  <span className="block text-[10px] uppercase tracking-[0.3em] text-white/40 mb-2 font-bold">Price per night</span>
+                  <span className="text-4xl font-serif font-bold text-gold-light">₹{room.price}</span>
+                </div>
+                <div className="flex gap-1 text-gold mb-1">
+                  {[...Array(5)].map((_, i) => <Star key={i} size={14} fill="#B8975A" />)}
+                </div>
               </div>
 
-              <form onSubmit={handleBooking} className="space-y-6">
+              <form onSubmit={handleBooking} className="space-y-8">
                 <div>
-                  <label className="block text-[10px] uppercase tracking-widest font-bold text-charcoal/40 mb-2">Full Name</label>
+                  <label className="block text-[10px] uppercase tracking-[0.4em] font-bold text-white/40 mb-3">Guest Name</label>
                   <input 
-                    type="text" name="name" required placeholder="John Doe"
+                    type="text" name="name" required placeholder="Enter full name"
                     onChange={handleInputChange}
-                    className="w-full bg-cream/50 border border-gold/10 p-4 text-sm focus:border-gold outline-none transition-all"
+                    className="w-full bg-white/5 border border-gold/20 p-5 text-white text-sm focus:border-gold outline-none transition-all placeholder:text-white/10"
                   />
                 </div>
                 <div>
-                  <label className="block text-[10px] uppercase tracking-widest font-bold text-charcoal/40 mb-2">Email Address</label>
-                  <input 
-                    type="email" name="email" required placeholder="john@example.com"
-                    onChange={handleInputChange}
-                    className="w-full bg-cream/50 border border-gold/10 p-4 text-sm focus:border-gold outline-none transition-all"
-                  />
-                </div>
-                <div>
-                  <label className="block text-[10px] uppercase tracking-widest font-bold text-charcoal/40 mb-2">Phone Number</label>
-                  <input 
-                    type="tel" name="phone" required placeholder="+91 00000 00000"
-                    onChange={handleInputChange}
-                    className="w-full bg-cream/50 border border-gold/10 p-4 text-sm focus:border-gold outline-none transition-all"
-                  />
+                  <label className="block text-[10px] uppercase tracking-[0.4em] font-bold text-white/40 mb-3">Contact Details</label>
+                  <div className="space-y-4">
+                    <input 
+                      type="email" name="email" required placeholder="Email Address"
+                      onChange={handleInputChange}
+                      className="w-full bg-white/5 border border-gold/20 p-5 text-white text-sm focus:border-gold outline-none transition-all placeholder:text-white/10"
+                    />
+                    <input 
+                      type="tel" name="phone" required placeholder="Phone Number"
+                      onChange={handleInputChange}
+                      className="w-full bg-white/5 border border-gold/20 p-5 text-white text-sm focus:border-gold outline-none transition-all placeholder:text-white/10"
+                    />
+                  </div>
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-[10px] uppercase tracking-widest font-bold text-charcoal/40 mb-2">Check-In</label>
+                    <label className="block text-[10px] uppercase tracking-[0.4em] font-bold text-white/40 mb-3">Check-In</label>
                     <input 
                       type="date" name="checkIn" required
                       onChange={handleInputChange}
                       min={new Date().toISOString().split('T')[0]}
-                      className="w-full bg-cream/50 border border-gold/10 p-4 text-sm focus:border-gold outline-none transition-all"
+                      className="w-full bg-white/5 border border-gold/20 p-5 text-white text-sm focus:border-gold outline-none transition-all [color-scheme:dark]"
                     />
                   </div>
                   <div>
-                    <label className="block text-[10px] uppercase tracking-widest font-bold text-charcoal/40 mb-2">Check-Out</label>
+                    <label className="block text-[10px] uppercase tracking-[0.4em] font-bold text-white/40 mb-3">Check-Out</label>
                     <input 
                       type="date" name="checkOut" required
                       onChange={handleInputChange}
                       min={formData.checkIn || new Date().toISOString().split('T')[0]}
-                      className="w-full bg-cream/50 border border-gold/10 p-4 text-sm focus:border-gold outline-none transition-all"
+                      className="w-full bg-white/5 border border-gold/20 p-5 text-white text-sm focus:border-gold outline-none transition-all [color-scheme:dark]"
                     />
                   </div>
                 </div>
 
-                <div>
-                  <label className="block text-[10px] uppercase tracking-widest font-bold text-charcoal/40 mb-2">Guests</label>
-                  <select 
-                    name="guests" 
-                    onChange={handleInputChange}
-                    className="w-full bg-cream/50 border border-gold/10 p-4 text-sm focus:border-gold outline-none transition-all cursor-pointer"
-                  >
-                    {[...Array(room.maxGuests)].map((_, i) => (
-                      <option key={i} value={i+1}>{i+1} Guest{i > 0 ? 's' : ''}</option>
-                    ))}
-                  </select>
-                </div>
-
                 {formData.checkIn && formData.checkOut && (
-                  <div className="bg-cream p-6 space-y-3">
-                    <div className="flex justify-between text-xs uppercase tracking-widest font-semibold text-charcoal/60">
-                      <span>{nights} Night{nights > 1 ? 's' : ''} x ₹{room.price}</span>
-                      <span>₹{nights * room.price}</span>
+                  <div className="bg-white/5 p-8 space-y-4 border border-gold/10">
+                    <div className="flex justify-between text-[10px] uppercase tracking-[0.2em] font-bold text-white/60">
+                      <span>{nights} Night{nights > 1 ? 's' : ''} Stay</span>
+                      <span className="text-white">₹{nights * room.price}</span>
                     </div>
-                    <div className="flex justify-between text-xs uppercase tracking-widest font-semibold text-charcoal/60">
-                      <span>Service Charge</span>
-                      <span>₹0</span>
-                    </div>
-                    <div className="border-t border-gold/10 pt-3 flex justify-between font-bold text-charcoal">
-                      <span>Total</span>
-                      <span>₹{totalAmount}</span>
+                    <div className="border-t border-white/10 pt-4 flex justify-between items-center">
+                      <span className="text-xs uppercase tracking-[0.3em] font-bold text-gold">Total Amount</span>
+                      <span className="text-2xl font-serif font-bold text-white">₹{totalAmount}</span>
                     </div>
                   </div>
                 )}
@@ -211,15 +198,16 @@ const RoomDetail = () => {
                 <button 
                   type="submit" 
                   disabled={loading}
-                  className="btn-luxury w-full flex items-center justify-center gap-3 disabled:opacity-50"
+                  className="btn-luxury w-full flex items-center justify-center gap-3 disabled:opacity-50 !py-6 text-xs"
                 >
-                  {loading ? "Processing..." : "Confirm Booking"}
+                  {loading ? "Securing Room..." : "Confirm Reservation"}
                 </button>
               </form>
               
-              <p className="text-[10px] text-center text-charcoal/40 mt-6 uppercase tracking-[0.2em] font-medium">
-                Protected by Secure Reservation
-              </p>
+              <div className="mt-8 flex items-center justify-center gap-3 text-white/30">
+                <ShieldCheck size={14} />
+                <p className="text-[9px] uppercase tracking-[0.2em] font-bold">Secure SSL Encrypted Booking</p>
+              </div>
             </div>
           </div>
         </div>

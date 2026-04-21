@@ -25,21 +25,21 @@ const Rooms = () => {
 
       <div className="container mx-auto px-6 flex flex-col lg:flex-row gap-12">
         {/* Sidebar Filters */}
-        <aside className="w-full lg:w-72 flex-shrink-0">
-          <div className="bg-white p-8 shadow-sm border border-gold/10 sticky top-28">
-            <div className="flex items-center gap-3 mb-8 pb-4 border-b border-gold/10">
-              <SlidersHorizontal size={18} className="text-gold" />
-              <h3 className="font-bold text-sm uppercase tracking-widest">Filter By</h3>
+        <aside className="w-full lg:w-80 flex-shrink-0">
+          <div className="bg-charcoal p-10 shadow-2xl border border-gold/10 sticky top-28">
+            <div className="flex items-center gap-3 mb-10 pb-4 border-b border-gold/20">
+              <SlidersHorizontal size={20} className="text-gold" />
+              <h3 className="font-bold text-sm uppercase tracking-[0.2em] text-white">Filter</h3>
             </div>
-
-            <div className="mb-8">
-              <label className="block text-[10px] uppercase tracking-widest font-bold text-charcoal/40 mb-4">Room Type</label>
-              <div className="space-y-3">
+ 
+            <div className="mb-10">
+              <label className="block text-[10px] uppercase tracking-[0.3em] font-bold text-white/40 mb-6">Room Type</label>
+              <div className="space-y-4">
                 {['All', 'Deluxe', 'Suite', 'Family', 'Honeymoon'].map(type => (
                   <button 
                     key={type}
                     onClick={() => setFilterType(type)}
-                    className={`block w-full text-left text-sm transition-colors hover:text-gold ${filterType === type ? 'text-gold font-bold' : 'text-charcoal/60'}`}
+                    className={`block w-full text-left text-sm uppercase tracking-widest transition-all hover:text-gold ${filterType === type ? 'text-gold font-bold translate-x-2' : 'text-white/60'}`}
                   >
                     {type}
                   </button>
@@ -48,7 +48,7 @@ const Rooms = () => {
             </div>
 
             <div>
-              <label className="block text-[10px] uppercase tracking-widest font-bold text-charcoal/40 mb-4">Max Price: ₹{maxPrice}</label>
+              <label className="block text-[10px] uppercase tracking-[0.3em] font-bold text-white/40 mb-6">Max Budget: <span className="text-gold">₹{maxPrice}</span></label>
               <input 
                 type="range" 
                 min="3000" 
@@ -56,11 +56,11 @@ const Rooms = () => {
                 step="500" 
                 value={maxPrice}
                 onChange={(e) => setMaxPrice(parseInt(e.target.value))}
-                className="w-full accent-gold cursor-pointer"
+                className="w-full accent-gold cursor-pointer opacity-80 hover:opacity-100 transition-opacity"
               />
-              <div className="flex justify-between text-[10px] text-charcoal/40 mt-2 uppercase tracking-tighter">
-                <span>₹3k</span>
-                <span>₹15k</span>
+              <div className="flex justify-between text-[10px] text-white/30 mt-4 uppercase tracking-tighter">
+                <span>₹3,000</span>
+                <span>₹15,000</span>
               </div>
             </div>
           </div>
@@ -89,21 +89,30 @@ const Rooms = () => {
                       ₹{room.price} <span className="text-[10px] uppercase tracking-tighter text-charcoal/50 font-sans">/ night</span>
                     </div>
                   </div>
-                  <div className="p-8">
-                    <span className="text-gold text-[10px] uppercase tracking-[0.3em] font-bold block mb-2">{room.type}</span>
-                    <h3 className="text-2xl font-bold mb-4 group-hover:text-gold-dark transition-colors">{room.name}</h3>
-                    <p className="text-charcoal/60 text-sm leading-relaxed mb-6 line-clamp-2">{room.description}</p>
+                  <div className="p-10 bg-white">
+                    <div className="flex justify-between items-start mb-6">
+                      <div>
+                        <span className="text-gold text-[10px] uppercase tracking-[0.3em] font-bold block mb-2">{room.type}</span>
+                        <h3 className="text-2xl font-bold text-charcoal group-hover:text-gold transition-colors">{room.name}</h3>
+                      </div>
+                      <div className="text-right">
+                        <span className="block text-gold-dark font-serif text-3xl font-bold leading-none">₹{room.price}</span>
+                        <span className="text-[10px] uppercase tracking-widest text-charcoal/30">per night</span>
+                      </div>
+                    </div>
                     
-                    <div className="flex flex-wrap gap-2 mb-8">
-                      {room.amenities.slice(0, 3).map(amenity => (
-                        <span key={amenity} className="text-[10px] bg-cream px-3 py-1 uppercase tracking-widest text-charcoal/40 font-medium">
+                    <p className="text-charcoal/60 text-sm leading-relaxed mb-8 line-clamp-2">{room.description}</p>
+                    
+                    <div className="flex flex-wrap gap-3 mb-10 pb-10 border-b border-gold/5">
+                      {room.amenities.slice(0, 4).map(amenity => (
+                        <span key={amenity} className="text-[9px] border border-gold/10 px-4 py-1.5 uppercase tracking-[0.15em] text-charcoal/60 font-bold group-hover:border-gold/30 transition-all">
                           {amenity}
                         </span>
                       ))}
                     </div>
 
-                    <Link to={`/room/${room.id}`} className="btn-luxury-outline w-full text-center block !py-3 !text-xs">
-                      View Details & Book
+                    <Link to={`/room/${room.id}`} className="btn-luxury w-full text-center block !py-5 !text-[10px]">
+                      Check Availability
                     </Link>
                   </div>
                 </motion.div>
