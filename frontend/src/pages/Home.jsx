@@ -42,7 +42,7 @@ const Home = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="max-w-2xl mx-auto text-lg md:text-xl font-light text-white/80 mb-12"
+            className="max-w-2xl mx-auto text-lg md:text-xl font-light text-white mb-12 drop-shadow-md"
           >
             A refined sanctuary just moments away from the magnificent Taj Mahal. Immerse yourself in Mughal-inspired elegance.
           </motion.p>
@@ -150,10 +150,10 @@ const Home = () => {
               <motion.div 
                 key={idx}
                 whileHover={{ y: -5 }}
-                className="flex flex-col items-center text-center p-8 border border-gold/5 hover:border-gold/20 transition-all bg-cream/30"
+                className="flex flex-col items-center text-center p-8 border border-gold/20 hover:border-gold transition-all bg-white shadow-sm"
               >
-                <div className="text-gold mb-4 p-4 rounded-full bg-white shadow-sm">{item.icon}</div>
-                <span className="text-sm font-semibold tracking-wide">{item.name}</span>
+                <div className="text-gold mb-4 p-4 rounded-full bg-cream shadow-inner">{item.icon}</div>
+                <span className="text-sm font-bold tracking-widest uppercase text-charcoal">{item.name}</span>
               </motion.div>
             ))}
           </div>
