@@ -44,13 +44,18 @@ app.use('/api/bookings', require('./routes/bookings'));
 app.use('/api/contact', require('./routes/contact'));
 app.use('/api/auth', require('./routes/auth'));
 
-app.get('/api/status', (req, res) => {
-  const status = mongoose.connection.readyState === 1 ? 'Connected' : 'Disconnected';
-  res.json({
-    server: 'Running',
-    database: status,
-    timestamp: new Date()
-  });
+app.get('/api/status', async (req, res) => {
+  try {
+    const status = mongoose.connection.readyState === 1 ? 'Connected' : 'Disconnected';
+    res.json({
+      server: 'Running',
+      database: status,
+      error: isConnected ? null : 'Check Vercel Logs for details',
+      timestamp: new Date()
+    });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 });
 
 app.get('/', (req, res) => {
