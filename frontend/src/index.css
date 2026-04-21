@@ -30,7 +30,12 @@ body {
   line-height: 1.6;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: 'Cormorant Garamond', Georgia, serif;
   font-weight: 600;
   letter-spacing: 0.02em;
@@ -149,7 +154,8 @@ footer {
   padding: 5rem 0 2rem;
 }
 
-footer h3, footer h4 {
+footer h3,
+footer h4 {
   color: white;
   margin-bottom: 1.5rem;
 }
@@ -167,13 +173,16 @@ footer a:hover {
 ::-webkit-scrollbar {
   width: 10px;
 }
+
 ::-webkit-scrollbar-track {
   background: var(--cream);
 }
+
 ::-webkit-scrollbar-thumb {
   background: var(--gold);
   border-radius: 5px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: var(--gold-dark);
 }
