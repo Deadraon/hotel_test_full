@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --gold: #B8975A;
+  --cream: #FAF7F2;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply font-sans bg-cream text-charcoal;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @apply font-serif;
+}
+
+.btn-luxury {
+  @apply bg-gold text-white px-8 py-3 uppercase tracking-widest font-semibold transition-all duration-300 hover:bg-gold-dark hover:-translate-y-1 active:translate-y-0;
+}
+
+.btn-luxury-outline {
+  @apply border border-gold text-gold px-8 py-3 uppercase tracking-widest font-semibold transition-all duration-300 hover:bg-gold hover:text-white;
+}
+
+.glass-nav {
+  @apply bg-cream/90 backdrop-blur-lg border-b border-gold/10;
+}
+
+.hero-gradient {
+  background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1548013146-72479768bbaa?q=80&w=2000&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-cream;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-gold/50 rounded-full hover:bg-gold;
+}

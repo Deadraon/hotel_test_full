@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Taj View Residency – Agra's Finest Hotel Near the Taj Mahal</title>
+  <meta name="description" content="Experience timeless luxury at Taj View Residency, moments from the Taj Mahal in Agra. Book your stay today." />
+  <meta property="og:title" content="Taj View Residency" />
+  <meta property="og:description" content="A refined sanctuary just moments away from the magnificent Taj Mahal." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #B8975A;
+      --gold-light: #D4B483;
+      --gold-dark: #8B6F3A;
+      --cream: #FAF7F2;
+      --ivory: #F2ECE4;
+      --charcoal: #1C1814;
+      --brown: #3D2B1F;
+      --text: #2D2016;
+      --text-muted: #7A6552;
+      --border: #E0D5C5;
+      --white: #FFFFFF;
+      --nav-h: 80px;
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans: 'Jost', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NAVIGATION ── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: var(--nav-h);
+      background: rgba(250,247,242,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center;
+    }
+    .nav-inner {
+      max-width: 1280px; margin: 0 auto; padding: 0 2rem;
+      width: 100%; display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo { text-decoration: none; cursor: pointer; }
+    .logo-name {
+      font-family: var(--serif);
+      font-size: 1.6rem; font-weight: 700;
+      color: var(--gold-dark); letter-spacing: 0.08em;
+      display: block; line-height: 1;
+    }
+    .logo-tag {
+      font-size: 0.6rem; letter-spacing: 0.4em;
+      text-transform: uppercase; color: var(--text-muted);
+      font-weight: 500;
+    }
+    .nav-links { display: flex; align-items: center; gap: 2.5rem; }
+    .nav-links a {
+      font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase;
+      font-weight: 500; color: var(--text-muted); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--gold-dark); }
+    .btn-book {
+      background: var(--gold-dark); color: var(--white);
+      padding: 0.65rem 1.6rem;
+      font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
+      font-weight: 600; font-family: var(--sans);
+      border: none; cursor: pointer; text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      display: inline-block;
+    }
+    .btn-book:hover { background: var(--gold); transform: translateY(-1px); }
+    .hamburger {
+      display: none; background: none; border: none;
+      cursor: pointer; padding: 0.5rem; flex-direction: column; gap: 5px;
+    }
+    .hamburger span {
+      display: block; width: 24px; height: 2px;
+      background: var(--text); transition: all 0.3s;
+    }
+    .mobile-menu {
+      display: none; position: fixed; top: var(--nav-h); left: 0; right: 0;
+      background: var(--cream); border-bottom: 1px solid var(--border);
+      padding: 1.5rem 2rem; z-index: 99; flex-direction: column; gap: 1rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase;
+      font-weight: 500; color: var(--text); text-decoration: none;
+      padding: 0.75rem 0; border-bottom: 1px solid var(--border);
+    }
+
+    /* ── PAGES ── */
+    .page { display: none; padding-top: var(--nav-h); min-height: 100vh; }
+    .page.active { display: block; }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative; height: calc(100vh - var(--nav-h));
+      min-height: 600px; display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, #1a0f05 0%, #3D2B1F 40%, #5C3D2A 70%, #1a0f05 100%);
+    }
+    .hero-pattern {
+      position: absolute; inset: 0; opacity: 0.06;
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23B8975A' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .hero-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.15); }
+    .hero-content {
+      position: relative; z-index: 2; text-align: center;
+      padding: 2rem; max-width: 800px; animation: fadeUp 1s ease both;
+    }
+    .hero-badge {
+      display: inline-block; margin-bottom: 1.5rem;
+      font-size: 0.65rem; letter-spacing: 0.4em; text-transform: uppercase;
+      color: var(--gold-light); font-weight: 500;
+      border: 1px solid rgba(184,151,90,0.4); padding: 0.4rem 1.5rem;
+    }
+    .hero h1 {
+      font-family: var(--serif); font-size: clamp(2.5rem, 7vw, 5.5rem);
+      font-weight: 700; color: var(--white); line-height: 1.1;
+      margin-bottom: 1.5rem; letter-spacing: -0.01em;
+    }
+    .hero h1 em { color: var(--gold-light); font-style: italic; }
+    .hero p {
+      font-size: clamp(0.95rem, 2vw, 1.1rem); color: rgba(255,255,255,0.8);
+      max-width: 520px; margin: 0 auto 3rem; font-weight: 300;
+    }
+    .hero-ctas { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--gold); color: var(--white);
+      padding: 0.9rem 2.2rem; border: none; cursor: pointer;
+      font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase;
+      font-weight: 600; font-family: var(--sans); text-decoration: none;
+      transition: all 0.2s; display: inline-block;
+    }
+    .btn-primary:hover { background: var(--gold-dark); transform: translateY(-2px); }
+    .btn-ghost {
+      background: transparent; color: var(--white);
+      padding: 0.9rem 2.2rem; border: 1px solid rgba(255,255,255,0.4);
+      cursor: pointer; font-size: 0.8rem; letter-spacing: 0.15em;
+      text-transform: uppercase; font-weight: 500; font-family: var(--sans);
+      text-decoration: none; transition: all 0.2s; display: inline-block;
+    }
+    .btn-ghost:hover { border-color: var(--gold-light); color: var(--gold-light); }
+
+    /* ── SEARCH BAR ── */
+    .search-bar {
+      background: var(--white); padding: 1.5rem 2rem;
+      display: flex; gap: 1rem; align-items: flex-end; flex-wrap: wrap;
+      box-shadow: 0 4px 40px rgba(0,0,0,0.12); max-width: 860px;
+      margin: 0 auto; animation: fadeUp 1s 0.2s ease both;
+    }
+    .search-group { flex: 1; min-width: 140px; }
+    .search-group label {
+      display: block; font-size: 0.65rem; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--text-muted);
+      margin-bottom: 0.4rem; font-weight: 500;
+    }
+    .search-group input, .search-group select {
+      width: 100%; border: 1px solid var(--border); padding: 0.6rem 0.75rem;
+      font-family: var(--sans); font-size: 0.9rem; color: var(--text);
+      background: var(--cream); outline: none; transition: border-color 0.2s;
+    }
+    .search-group input:focus, .search-group select:focus { border-color: var(--gold); }
+    .search-group select { cursor: pointer; }
+
+    /* ── SECTION COMMONS ── */
+    .section { padding: 6rem 2rem; }
+    .section-inner { max-width: 1280px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.65rem; letter-spacing: 0.4em; text-transform: uppercase;
+      color: var(--gold); font-weight: 600; margin-bottom: 0.75rem;
+      display: block;
+    }
+    .section-title {
+      font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700; color: var(--charcoal); line-height: 1.15;
+      margin-bottom: 1.25rem;
+    }
+    .section-subtitle {
+      color: var(--text-muted); max-width: 540px; font-weight: 300; font-size: 1.05rem;
+    }
+    .section-header { text-align: center; margin-bottom: 4rem; }
+    .section-header .section-subtitle { margin: 0 auto; }
+    .divider {
+      width: 60px; height: 2px; background: var(--gold);
+      margin: 1.25rem auto 0;
+    }
+    .divider-left { margin-left: 0; }
+
+    /* ── ROOMS GRID ── */
+    .rooms-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2rem; }
+    .room-card {
+      background: var(--white); overflow: hidden;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .room-card:hover { transform: translateY(-4px); box-shadow: 0 8px 40px rgba(0,0,0,0.12); }
+    .room-img { position: relative; height: 240px; overflow: hidden; }
+    .room-img-placeholder {
+      width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+      font-family: var(--serif); font-size: 1.1rem; color: rgba(255,255,255,0.7);
+    }
+    .room-price-badge {
+      position: absolute; top: 1rem; right: 1rem;
+      background: rgba(250,247,242,0.95); backdrop-filter: blur(4px);
+      padding: 0.35rem 0.9rem; font-weight: 600; font-size: 0.9rem; color: var(--brown);
+    }
+    .room-body { padding: 1.75rem; }
+    .room-type {
+      font-size: 0.62rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--gold); font-weight: 600; margin-bottom: 0.5rem;
+    }
+    .room-name {
+      font-family: var(--serif); font-size: 1.4rem; font-weight: 700;
+      color: var(--charcoal); margin-bottom: 0.75rem; line-height: 1.2;
+    }
+    .room-desc { font-size: 0.88rem; color: var(--text-muted); line-height: 1.65; margin-bottom: 1.25rem; }
+    .room-amenities { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+    .amenity-tag {
+      font-size: 0.7rem; padding: 0.25rem 0.65rem; background: var(--ivory);
+      color: var(--text-muted); letter-spacing: 0.05em;
+    }
+    .btn-outline {
+      width: 100%; background: transparent; border: 1px solid var(--gold-dark);
+      color: var(--gold-dark); padding: 0.75rem; font-family: var(--sans);
+      font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase;
+      font-weight: 600; cursor: pointer; transition: all 0.2s;
+    }
+    .btn-outline:hover { background: var(--gold-dark); color: var(--white); }
+
+    /* ── AMENITIES ── */
+    .amenities-section { background: var(--ivory); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .amenities-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 2rem;
+    }
+    .amenity-item { display: flex; flex-direction: column; align-items: center; text-align: center; }
+    .amenity-icon {
+      width: 64px; height: 64px; border-radius: 50%;
+      background: var(--cream); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; margin-bottom: 1rem;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .amenity-item:hover .amenity-icon { background: var(--gold); border-color: var(--gold); }
+    .amenity-name { font-size: 0.82rem; font-weight: 500; color: var(--text); }
+
+    /* ── REVIEWS ── */
+    .reviews-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2rem; }
+    .review-card { background: var(--white); padding: 2rem; box-shadow: 0 2px 20px rgba(0,0,0,0.05); }
+    .stars { color: var(--gold); font-size: 1rem; margin-bottom: 1rem; letter-spacing: 0.1em; }
+    .review-text {
+      font-family: var(--serif); font-size: 1.05rem; font-style: italic;
+      color: var(--text); margin-bottom: 1.5rem; line-height: 1.6;
+    }
+    .reviewer-name { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 600; color: var(--charcoal); }
+    .reviewer-detail { font-size: 0.78rem; color: var(--text-muted); margin-top: 0.2rem; }
+
+    /* ── MAP SECTION ── */
+    .location-section { background: var(--charcoal); color: var(--white); }
+    .location-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .location-section .section-title { color: var(--white); }
+    .location-section .section-subtitle { color: rgba(255,255,255,0.65); }
+    .location-section .divider-left { background: var(--gold); }
+    .location-detail { display: flex; gap: 1rem; margin-bottom: 1.5rem; }
+    .location-detail-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 0.1rem; }
+    .location-detail h4 { font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-light); font-weight: 600; margin-bottom: 0.3rem; }
+    .location-detail p { font-size: 0.9rem; color: rgba(255,255,255,0.7); font-weight: 300; }
+    .map-container { height: 380px; background: #2a1f14; overflow: hidden; position: relative; }
+    .map-container iframe { width: 100%; height: 100%; border: 0; display: block; }
+
+    /* ── CONTACT PAGE ── */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+    .contact-info-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 2rem; }
+    .info-card {
+      background: var(--ivory); padding: 1.5rem;
+      text-align: center; border: 1px solid var(--border);
+    }
+    .info-card-icon { font-size: 1.5rem; margin-bottom: 0.75rem; }
+    .info-card h4 { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; color: var(--charcoal); margin-bottom: 0.5rem; }
+    .info-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
+    .form-group { margin-bottom: 1.25rem; }
+    .form-group label { display: block; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; color: var(--text-muted); margin-bottom: 0.5rem; }
+    .form-group input, .form-group textarea, .form-group select {
+      width: 100%; border: 1px solid var(--border); padding: 0.75rem 1rem;
+      font-family: var(--sans); font-size: 0.9rem; color: var(--text);
+      background: var(--cream); outline: none; transition: border-color 0.2s;
+    }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--gold); }
+    .form-group textarea { resize: vertical; min-height: 130px; }
+    .form-success {
+      display: none; background: #f0faf3; border: 1px solid #a8e6bc;
+      padding: 1rem 1.5rem; color: #1a6633; font-size: 0.9rem; margin-top: 1rem;
+    }
+    .form-success.show { display: block; }
+
+    /* ── BOOKING MODAL ── */
+    .modal-overlay {
+      display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6);
+      z-index: 200; align-items: center; justify-content: center; padding: 1rem;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal {
+      background: var(--white); max-width: 520px; width: 100%;
+      padding: 2.5rem; position: relative; max-height: 90vh; overflow-y: auto;
+      animation: fadeUp 0.3s ease;
+    }
+    .modal-close {
+      position: absolute; top: 1rem; right: 1rem;
+      background: none; border: none; cursor: pointer;
+      font-size: 1.4rem; color: var(--text-muted);
+    }
+    .modal-title { font-family: var(--serif); font-size: 1.8rem; font-weight: 700; color: var(--charcoal); margin-bottom: 0.5rem; }
+    .modal-room { font-size: 0.8rem; color: var(--gold); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.5rem; }
+    .modal-price-summary { background: var(--ivory); padding: 1rem 1.25rem; margin: 1.25rem 0; font-size: 0.88rem; }
+    .modal-price-row { display: flex; justify-content: space-between; margin-bottom: 0.35rem; color: var(--text-muted); }
+    .modal-price-total { display: flex; justify-content: space-between; font-weight: 700; color: var(--charcoal); font-size: 1rem; border-top: 1px solid var(--border); padding-top: 0.6rem; margin-top: 0.5rem; }
+    .booking-success { text-align: center; padding: 2rem 0; }
+    .booking-success .check { font-size: 3rem; margin-bottom: 1rem; }
+    .booking-success h3 { font-family: var(--serif); font-size: 1.6rem; margin-bottom: 0.5rem; color: var(--charcoal); }
+    .booking-success p { color: var(--text-muted); font-size: 0.9rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--charcoal); color: rgba(255,255,255,0.6);
+      padding: 4rem 2rem 2rem;
+    }
+    .footer-inner { max-width: 1280px; margin: 0 auto; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4rem; margin-bottom: 3rem; }
+    .footer-brand .logo-name { color: var(--gold-light); font-size: 1.4rem; }
+    .footer-brand .logo-tag { display: block; margin-top: 0.25rem; }
+    .footer-about { margin-top: 1rem; font-size: 0.85rem; line-height: 1.75; }
+    .footer-col h5 { font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--white); font-weight: 600; margin-bottom: 1.2rem; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 0.6rem; }
+    .footer-col ul li a { color: rgba(255,255,255,0.55); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; cursor: pointer; }
+    .footer-col ul li a:hover { color: var(--gold-light); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: gap; font-size: 0.78rem; }
+    .footer-bottom p { flex: 1; }
+
+    /* ── ROOM DETAIL VIEW ── */
+    .room-detail-header { background: var(--charcoal); padding: 8rem 2rem 3rem; }
+    .room-detail-header .section-label { color: var(--gold-light); }
+    .room-detail-header h1 { font-family: var(--serif); font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700; color: var(--white); margin-bottom: 0.5rem; }
+    .room-detail-content { max-width: 1280px; margin: 0 auto; padding: 4rem 2rem; display: grid; grid-template-columns: 1fr 360px; gap: 4rem; align-items: start; }
+    .room-gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 2.5rem; }
+    .room-gallery-main { grid-column: 1 / -1; height: 320px; overflow: hidden; }
+    .room-gallery-thumb { height: 160px; overflow: hidden; }
+    .room-gallery-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .gallery-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; color: rgba(255,255,255,0.5); font-family: var(--serif); }
+    .room-features { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin: 2rem 0; }
+    .room-feature { background: var(--ivory); padding: 0.9rem 1.1rem; display: flex; align-items: center; gap: 0.75rem; }
+    .room-feature-icon { font-size: 1.1rem; }
+    .room-feature-text { font-size: 0.85rem; color: var(--text); font-weight: 500; }
+    .booking-card { background: var(--white); padding: 2rem; box-shadow: 0 4px 30px rgba(0,0,0,0.1); position: sticky; top: calc(var(--nav-h) + 1.5rem); }
+    .booking-card-price { font-family: var(--serif); font-size: 2rem; color: var(--charcoal); font-weight: 700; margin-bottom: 0.25rem; }
+    .booking-card-per { font-size: 0.78rem; color: var(--text-muted); letter-spacing: 0.08em; margin-bottom: 1.5rem; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .fade-in { animation: fadeUp 0.7s ease both; }
+
+    /* ── BACK BUTTON ── */
+    .back-btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase;
+      font-weight: 600; color: var(--gold-light); cursor: pointer;
+      background: none; border: none; padding: 0; margin-bottom: 1.5rem;
+      transition: gap 0.2s;
+    }
+    .back-btn:hover { gap: 0.75rem; }
+
+    /* ── NOTIFICATION ── */
+    .toast {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 300;
+      background: var(--charcoal); color: var(--white); padding: 1rem 1.5rem;
+      font-size: 0.88rem; box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      transform: translateY(100px); opacity: 0;
+      transition: all 0.3s; max-width: 320px;
+    }
+    .toast.show { transform: translateY(0); opacity: 1; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .location-grid, .contact-grid, .footer-grid { grid-template-columns: 1fr; }
+      .room-detail-content { grid-template-columns: 1fr; }
+      .contact-info-cards { grid-template-columns: 1fr 1fr; }
+      .search-bar { flex-direction: column; }
+      .booking-card { position: static; }
+      .room-gallery { grid-template-columns: 1fr; }
+      .room-gallery-main { grid-column: auto; }
+      .hero-ctas { flex-direction: column; align-items: center; }
+    }
+    @media (max-width: 480px) {
+      .section { padding: 4rem 1rem; }
+      .contact-info-cards { grid-template-columns: 1fr; }
+      .rooms-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════ NAV ═══════════════════ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="logo" onclick="showPage('home')">
+      <span class="logo-name">TAJ VIEW</span>
+      <span class="logo-tag">Residency · Agra</span>
+    </a>
+    <div class="nav-links">
+      <a onclick="showPage('home')" class="active" id="nav-home">Home</a>
+      <a onclick="showPage('rooms')" id="nav-rooms">Rooms & Suites</a>
+      <a onclick="showPage('contact')" id="nav-contact">Contact</a>
+      <a onclick="showPage('rooms')" class="btn-book">Book Now</a>
+    </div>
+    <button class="hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a onclick="showPage('home'); closeMobileMenu()">Home</a>
+  <a onclick="showPage('rooms'); closeMobileMenu()">Rooms & Suites</a>
+  <a onclick="showPage('contact'); closeMobileMenu()">Contact</a>
+  <a onclick="showPage('rooms'); closeMobileMenu()" class="btn-book" style="margin-top:0.5rem; text-align:center;">Book Now</a>
+</div>
+
+<!-- ═══════════════════ HOME PAGE ═══════════════════ -->
+<div id="page-home" class="page active">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-pattern"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <span class="hero-badge">✦ Agra's Premier Luxury Hotel ✦</span>
+      <h1>Experience <em>Timeless</em><br/>Luxury</h1>
+      <p>A refined sanctuary just moments away from the magnificent Taj Mahal. Immerse yourself in Mughal-inspired elegance.</p>
+      <div class="hero-ctas">
+        <a onclick="showPage('rooms')" class="btn-primary">Explore Rooms</a>
+        <a onclick="document.getElementById('location-section').scrollIntoView({behavior:'smooth'})" class="btn-ghost">Our Location</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Search -->
+  <section style="padding: 3rem 2rem; background: var(--white);">
+    <div class="search-bar" style="max-width:860px; margin:0 auto;">
+      <div class="search-group">
+        <label>Check-in</label>
+        <input type="date" id="s-checkin" />
+      </div>
+      <div class="search-group">
+        <label>Check-out</label>
+        <input type="date" id="s-checkout" />
+      </div>
+      <div class="search-group" style="min-width:110px;">
+        <label>Guests</label>
+        <select id="s-guests">
+          <option>1</option><option selected>2</option>
+          <option>3</option><option>4</option><option>5+</option>
+        </select>
+      </div>
+      <button class="btn-book" style="padding:0.8rem 1.75rem; white-space:nowrap;" onclick="showPage('rooms')">Search Rooms</button>
+    </div>
+  </section>
+
+  <!-- About Strip -->
+  <section class="section" style="background:var(--cream);">
+    <div class="section-inner" style="display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center;">
+      <div>
+        <span class="section-label">Our Story</span>
+        <h2 class="section-title">Where Mughal Heritage<br/>Meets Modern Comfort</h2>
+        <div class="divider divider-left" style="margin-bottom:1.5rem;"></div>
+        <p style="color:var(--text-muted); font-weight:300; line-height:1.8; margin-bottom:1.25rem; font-size:0.95rem;">
+          Taj View Residency stands as a testament to Agra's glorious past, offering guests an immersive experience into the world of Mughal grandeur. Our property is lovingly designed to reflect the architectural majesty that surrounds it.
+        </p>
+        <p style="color:var(--text-muted); font-weight:300; line-height:1.8; font-size:0.95rem;">
+          With an unobstructed view of the iconic Taj Mahal from select rooms and a warm, personalized service ethos, we ensure every stay becomes a cherished memory.
+        </p>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; margin-top:2.5rem;">
+          <div><div style="font-family:var(--serif); font-size:2.2rem; color:var(--gold-dark); font-weight:700;">25+</div><div style="font-size:0.78rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-muted);">Years of Excellence</div></div>
+          <div><div style="font-family:var(--serif); font-size:2.2rem; color:var(--gold-dark); font-weight:700;">4.8★</div><div style="font-size:0.78rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-muted);">Guest Rating</div></div>
+        </div>
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.75rem;">
+        <div style="height:280px; background:linear-gradient(135deg,#3D2B1F,#5C3D2A); display:flex;align-items:center;justify-content:center;">
+          <span style="font-family:var(--serif); font-size:1rem; color:rgba(255,255,255,0.5);">Lobby</span>
+        </div>
+        <div style="height:280px; background:linear-gradient(135deg,#2a1f14,#4a3020); display:flex;align-items:center;justify-content:center; margin-top:1.5rem;">
+          <span style="font-family:var(--serif); font-size:1rem; color:rgba(255,255,255,0.5);">Pool</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Rooms -->
+  <section class="section" style="background:var(--white);">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-label">Accommodations</span>
+        <h2 class="section-title">Our Finest Rooms & Suites</h2>
+        <div class="divider"></div>
+        <p class="section-subtitle" style="margin-top:1.25rem;">Each room is a private sanctuary, meticulously designed for your comfort and pleasure.</p>
+      </div>
+      <div class="rooms-grid" id="featured-rooms"></div>
+      <div style="text-align:center; margin-top:3rem;">
+        <button onclick="showPage('rooms')" class="btn-primary">View All Rooms</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Amenities -->
+  <section class="section amenities-section">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-label">Facilities</span>
+        <h2 class="section-title">Hotel Amenities</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="amenities-grid">
+        <div class="amenity-item"><div class="amenity-icon">📶</div><div class="amenity-name">Free Wi-Fi</div></div>
+        <div class="amenity-item"><div class="amenity-icon">🏊</div><div class="amenity-name">Swimming Pool</div></div>
+        <div class="amenity-item"><div class="amenity-icon">🍽️</div><div class="amenity-name">Fine Dining</div></div>
+        <div class="amenity-item"><div class="amenity-icon">🚗</div><div class="amenity-name">Valet Parking</div></div>
+        <div class="amenity-item"><div class="amenity-icon">❄️</div><div class="amenity-name">Air Conditioning</div></div>
+        <div class="amenity-item"><div class="amenity-icon">🕐</div><div class="amenity-name">24/7 Reception</div></div>
+        <div class="amenity-item"><div class="amenity-icon">🛁</div><div class="amenity-name">Spa & Wellness</div></div>
+        <div class="amenity-item"><div class="amenity-icon">🏋️</div><div class="amenity-name">Fitness Centre</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews -->
+  <section class="section" style="background:var(--cream);">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-label">Guest Voices</span>
+        <h2 class="section-title">Guest Experiences</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="reviews-grid">
+        <div class="review-card fade-in">
+          <div class="stars">★★★★★</div>
+          <p class="review-text">"The view of the Taj Mahal at sunrise from our suite was simply breathtaking. The staff's hospitality was unmatched — we felt like royalty throughout our stay."</p>
+          <div class="reviewer-name">Priya & Rahul Sharma</div>
+          <div class="reviewer-detail">Honeymoon Suite</div>
+        </div>
+        <div class="review-card fade-in">
+          <div class="stars">★★★★★</div>
+          <p class="review-text">"An extraordinary property. The Mughal architecture, the attention to detail, and the warm smiles everywhere made this our most memorable family vacation ever."</p>
+          <div class="reviewer-name">The Mehta Family</div>
+          <div class="reviewer-detail">Family Suite</div>
+        </div>
+        <div class="review-card fade-in">
+          <div class="stars">★★★★★</div>
+          <p class="review-text">"Perfect location, flawless service, and a room that genuinely takes your breath away. This is the finest hotel I have stayed in across all of India."</p>
+          <div class="reviewer-name">James Whitfield</div>
+          <div class="reviewer-detail">Royal Deluxe Room · London, UK</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Location -->
+  <section class="section location-section" id="location-section">
+    <div class="section-inner">
+      <div class="location-grid">
+        <div>
+          <span class="section-label" style="color:var(--gold-light);">Find Us</span>
+          <h2 class="section-title">Unrivaled Location</h2>
+          <div class="divider divider-left" style="margin-bottom:2rem;"></div>
+          <p class="section-subtitle" style="margin-bottom:2.5rem;">Situated just minutes from the eastern gate of the Taj Mahal, our residency offers the perfect starting point for your Agra adventure.</p>
+          <div class="location-detail">
+            <div class="location-detail-icon">📍</div>
+            <div><h4>Address</h4><p>Taj Ganj, Agra<br/>Uttar Pradesh 282001, India</p></div>
+          </div>
+          <div class="location-detail">
+            <div class="location-detail-icon">📞</div>
+            <div><h4>Phone</h4><p>+91 562 223 0000</p></div>
+          </div>
+          <div class="location-detail">
+            <div class="location-detail-icon">✉️</div>
+            <div><h4>Email</h4><p>reservations@tajviewresidency.com</p></div>
+          </div>
+          <div class="location-detail">
+            <div class="location-detail-icon">🕐</div>
+            <div><h4>Check-in / Check-out</h4><p>Check-in: 2:00 PM · Check-out: 11:00 AM</p></div>
+          </div>
+        </div>
+        <div class="map-container">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14192.189543839!2d78.034831!3d27.173891!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39747121d702ff6d%3A0xdd2ae4803f767dde!2sTaj%20Mahal!5e0!3m2!1sen!2sin!4v1700000000000"
+            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Hotel Location Map">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+<!-- end home page -->
+
+<!-- ═══════════════════ ROOMS PAGE ═══════════════════ -->
+<div id="page-rooms" class="page">
+  <div style="background:var(--charcoal); padding:8rem 2rem 3rem;">
+    <div style="max-width:1280px; margin:0 auto;">
+      <span class="section-label" style="color:var(--gold-light);">Accommodations</span>
+      <h1 style="font-family:var(--serif);font-size:clamp(2rem,5vw,3.5rem);font-weight:700;color:var(--white);">Rooms & Suites</h1>
+    </div>
+  </div>
+
+  <section class="section" style="background:var(--cream);">
+    <div class="section-inner" style="display:flex; gap:3rem; align-items:flex-start;">
+      <!-- Filters -->
+      <aside style="width:220px; flex-shrink:0; position:sticky; top:calc(var(--nav-h) + 1.5rem);">
+        <h3 style="font-family:var(--serif); font-size:1.2rem; font-weight:700; margin-bottom:1.5rem; color:var(--charcoal);">Filter</h3>
+        <div class="form-group">
+          <label>Room Type</label>
+          <select id="filter-type" onchange="renderRooms()">
+            <option value="">All Types</option>
+            <option value="Deluxe">Deluxe</option>
+            <option value="Suite">Suite</option>
+            <option value="Family">Family</option>
+            <option value="Honeymoon">Honeymoon</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Max Price (₹/night)</label>
+          <input type="range" id="filter-price" min="3000" max="20000" step="500" value="20000" oninput="document.getElementById('price-val').textContent='₹'+this.value; renderRooms();" style="width:100%; accent-color:var(--gold);" />
+          <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Up to <span id="price-val">₹20000</span></div>
+        </div>
+        <div class="form-group">
+          <label>Check-in</label>
+          <input type="date" id="filter-checkin" />
+        </div>
+        <div class="form-group">
+          <label>Check-out</label>
+          <input type="date" id="filter-checkout" />
+        </div>
+      </aside>
+
+      <!-- Room List -->
+      <div style="flex:1;">
+        <div class="rooms-grid" id="rooms-list"></div>
+        <div id="no-rooms" style="display:none; text-align:center; padding:4rem 0; color:var(--text-muted); font-style:italic;">
+          No rooms match your filter. Please adjust your criteria.
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════════ ROOM DETAIL PAGE ═══════════════════ -->
+<div id="page-room-detail" class="page">
+  <div class="room-detail-header" id="detail-header">
+    <div style="max-width:1280px; margin:0 auto;">
+      <button class="back-btn" onclick="showPage('rooms')">← Back to Rooms</button>
+      <div id="detail-header-content"></div>
+    </div>
+  </div>
+  <div class="room-detail-content" id="detail-content"></div>
+</div>
+
+<!-- ═══════════════════ CONTACT PAGE ═══════════════════ -->
+<div id="page-contact" class="page">
+  <div style="background:var(--charcoal); padding:8rem 2rem 3rem;">
+    <div style="max-width:1280px; margin:0 auto;">
+      <span class="section-label" style="color:var(--gold-light);">Get in Touch</span>
+      <h1 style="font-family:var(--serif);font-size:clamp(2rem,5vw,3.5rem);font-weight:700;color:var(--white);">Contact Us</h1>
+    </div>
+  </div>
+
+  <section class="section" style="background:var(--cream);">
+    <div class="section-inner">
+      <div class="contact-grid">
+        <div>
+          <div class="contact-info-cards">
+            <div class="info-card">
+              <div class="info-card-icon">📍</div>
+              <h4>Address</h4>
+              <p>Taj Ganj, Agra<br/>Uttar Pradesh 282001<br/>India</p>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon">📞</div>
+              <h4>Phone</h4>
+              <p>+91 562 223 0000<br/>+91 562 223 0001</p>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon">✉️</div>
+              <h4>Email</h4>
+              <p>reservations@tajviewresidency.com</p>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon">🕐</div>
+              <h4>Hours</h4>
+              <p>Reception: 24/7<br/>Check-in: 2 PM<br/>Check-out: 11 AM</p>
+            </div>
+          </div>
+          <div class="map-container" style="height:280px;">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14192.189543839!2d78.034831!3d27.173891!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39747121d702ff6d%3A0xdd2ae4803f767dde!2sTaj%20Mahal!5e0!3m2!1sen!2sin!4v1700000000000"
+              allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map">
+            </iframe>
+          </div>
+        </div>
+
+        <div>
+          <h2 style="font-family:var(--serif); font-size:1.8rem; font-weight:700; color:var(--charcoal); margin-bottom:0.5rem;">Send a Message</h2>
+          <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:2rem;">We respond to all enquiries within 24 hours.</p>
+          <form onsubmit="submitContact(event)">
+            <div class="form-group">
+              <label>Your Name *</label>
+              <input type="text" id="c-name" required placeholder="e.g. Rahul Sharma" />
+            </div>
+            <div class="form-group">
+              <label>Email Address *</label>
+              <input type="email" id="c-email" required placeholder="you@example.com" />
+            </div>
+            <div class="form-group">
+              <label>Phone (optional)</label>
+              <input type="tel" id="c-phone" placeholder="+91 00000 00000" />
+            </div>
+            <div class="form-group">
+              <label>Subject</label>
+              <select id="c-subject">
+                <option>Room Enquiry</option>
+                <option>Booking Request</option>
+                <option>Special Occasion</option>
+                <option>Group Booking</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Message *</label>
+              <textarea id="c-message" required placeholder="Tell us how we can help you…"></textarea>
+            </div>
+            <button type="submit" class="btn-primary" style="width:100%; text-align:center;">Send Message</button>
+            <div class="form-success" id="contact-success">
+              ✓ &nbsp; Your message has been received. We will contact you shortly.
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="logo-name" style="font-family:var(--serif); font-size:1.4rem; font-weight:700; color:var(--gold-light);">TAJ VIEW</span>
+        <span class="logo-tag" style="font-size:0.6rem; letter-spacing:0.4em; text-transform:uppercase; color:rgba(255,255,255,0.4); display:block; margin-top:0.25rem;">Residency · Agra</span>
+        <p class="footer-about">A sanctuary of luxury and tranquility in the shadow of the world's most iconic monument. Experience the timeless charm of Agra at Taj View Residency.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Navigation</h5>
+        <ul>
+          <li><a onclick="showPage('home')">Home</a></li>
+          <li><a onclick="showPage('rooms')">Rooms & Suites</a></li>
+          <li><a onclick="showPage('contact')">Contact Us</a></li>
+          <li><a onclick="showPage('rooms')">Book a Room</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <ul>
+          <li><a>Taj Ganj, Agra 282001</a></li>
+          <li><a href="tel:+915622230000">+91 562 223 0000</a></li>
+          <li><a href="mailto:reservations@tajviewresidency.com">reservations@tajviewresidency.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Taj View Residency. All rights reserved.</p>
+      <p style="text-align:right; color:rgba(255,255,255,0.35);">Agra, Uttar Pradesh, India</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════ BOOKING MODAL ═══════════════════ -->
+<div class="modal-overlay" id="booking-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div id="modal-content"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════ TOAST ═══════════════════ -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ── DATA ──
+const rooms = [
+  {
+    id: 1,
+    name: "Grand Deluxe Room",
+    type: "Deluxe",
+    price: 4500,
+    maxGuests: 2,
+    bedType: "King",
+    view: "Garden View",
+    description: "An elegantly appointed room featuring warm Mughal-inspired décor, a plush king-sized bed, and a private balcony overlooking our lush gardens.",
+    longDesc: "Our Grand Deluxe Rooms offer a refined retreat with rich walnut furnishings, hand-woven textiles, and contemporary amenities seamlessly integrated into a traditional aesthetic. Floor-to-ceiling windows flood the space with natural light, and the spacious marble bathroom features a deep soaking tub and rain shower.",
+    amenities: ["King Bed", "Garden View", "Free Wi-Fi", "Air Conditioning", "Flat-screen TV", "Mini Bar"],
+    gradient: "linear-gradient(135deg, #3D2B1F, #6B4C35)"
+  },
+  {
+    id: 2,
+    name: "Royal Suite",
+    type: "Suite",
+    price: 9800,
+    maxGuests: 4,
+    bedType: "King + Sofa Bed",
+    view: "Taj Mahal View",
+    description: "An opulent suite with a direct view of the Taj Mahal, featuring a separate living area, a private dining space, and a royal bathing experience.",
+    longDesc: "The Royal Suite is our flagship accommodation — a complete palace experience. Wake to the sight of the Taj Mahal glowing at dawn. The suite features separate living and dining areas, a butler pantry, and an expansive bathroom with a marble jacuzzi. Handcrafted furnishings and original artworks adorn every corner.",
+    amenities: ["Taj Mahal View", "King Bed", "Living Area", "Jacuzzi", "Butler Service", "Mini Kitchen", "Free Wi-Fi"],
+    gradient: "linear-gradient(135deg, #2a1f14, #4a3020)"
+  },
+  {
+    id: 3,
+    name: "Family Suite",
+    type: "Family",
+    price: 7200,
+    maxGuests: 5,
+    bedType: "2 Queen Beds",
+    view: "Pool View",
+    description: "A thoughtfully designed suite accommodating the entire family, with two interconnected bedrooms, a shared living area, and a stunning pool view.",
+    longDesc: "Designed with families in mind, this spacious suite connects two well-appointed bedrooms through a comfortable shared living area. Children will love the dedicated reading nook and games corner, while parents relax on the private terrace overlooking our shimmering pool.",
+    amenities: ["2 Queen Beds", "Pool View", "Living Room", "Kids Corner", "Free Wi-Fi", "Air Conditioning"],
+    gradient: "linear-gradient(135deg, #1e2d1e, #2f4a2f)"
+  },
+  {
+    id: 4,
+    name: "Honeymoon Suite",
+    type: "Honeymoon",
+    price: 12500,
+    maxGuests: 2,
+    bedType: "Super King",
+    view: "Taj Mahal & Yamuna View",
+    description: "A romantic haven crafted for couples, featuring a super-king bed draped in rose petals, a private plunge pool, and the most breathtaking sunset views.",
+    longDesc: "Our Honeymoon Suite is a masterpiece of romance. Rose-petal turndown service, candlelit private dining, a personal plunge pool under the stars, and the iconic silhouette of the Taj Mahal on the horizon — every detail has been curated to make your most cherished moments unforgettable.",
+    amenities: ["Taj & Yamuna View", "Super King", "Private Plunge Pool", "Rose Petal Service", "Butler", "Champagne Welcome"],
+    gradient: "linear-gradient(135deg, #2d1a2d, #5a3060)"
+  },
+  {
+    id: 5,
+    name: "Classic Deluxe Room",
+    type: "Deluxe",
+    price: 3800,
+    maxGuests: 2,
+    bedType: "Queen",
+    view: "City View",
+    description: "A beautifully appointed room perfect for explorers, offering a comfortable queen bed, modern amenities, and vibrant views of historic Agra.",
+    longDesc: "The Classic Deluxe Room combines comfort and style with a city-facing perspective. Enjoy thoughtful amenities including high-speed Wi-Fi, a work desk ideal for business travellers, and a premium bath amenities kit curated exclusively for our guests.",
+    amenities: ["Queen Bed", "City View", "Work Desk", "Free Wi-Fi", "Air Conditioning", "Room Service"],
+    gradient: "linear-gradient(135deg, #1a2030, #2a3a5a)"
+  },
+  {
+    id: 6,
+    name: "Premier Suite",
+    type: "Suite",
+    price: 11500,
+    maxGuests: 3,
+    bedType: "King",
+    view: "Taj Mahal View",
+    description: "A spacious and sophisticated suite that frames the Taj Mahal like a living painting, with a terrace, sunken lounge, and personalised butler service.",
+    longDesc: "The Premier Suite redefines the concept of a luxury room. The floor-to-ceiling windows and private terrace present the Taj Mahal as your personal artwork. A sunken seating lounge, integrated Bose sound system, espresso station, and dedicated butler service complete this unparalleled experience.",
+    amenities: ["Taj Mahal View", "King Bed", "Private Terrace", "Bose Sound", "Butler Service", "Free Wi-Fi"],
+    gradient: "linear-gradient(135deg, #2d1414, #5a2020)"
+  }
+];
+
+// ── ROUTING ──
+let currentPage = 'home';
+let selectedRoom = null;
+
+function showPage(page, roomId) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + (page === 'room-detail' ? 'room-detail' : page)).classList.add('active');
+  
+  // Update nav active states
+  ['home','rooms','contact'].forEach(p => {
+    const el = document.getElementById('nav-' + p);
+    if (el) el.classList.toggle('active', p === page);
+  });
+
+  window.scrollTo(0, 0);
+  currentPage = page;
+
+  if (page === 'rooms') renderRooms();
+  if (page === 'home') renderFeaturedRooms();
+  if (page === 'room-detail' && roomId) renderRoomDetail(roomId);
+}
+
+// ── ROOMS RENDERING ──
+function formatPrice(p) {
+  return new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(p);
+}
+
+function roomCardHTML(room) {
+  return `
+    <div class="room-card">
+      <div class="room-img">
+        <div class="room-img-placeholder" style="background:${room.gradient};">
+          <span>${room.name}</span>
+        </div>
+        <div class="room-price-badge">${formatPrice(room.price)} / night</div>
+      </div>
+      <div class="room-body">
+        <div class="room-type">${room.type}</div>
+        <div class="room-name">${room.name}</div>
+        <p class="room-desc">${room.description}</p>
+        <div class="room-amenities">
+          ${room.amenities.slice(0,4).map(a => `<span class="amenity-tag">${a}</span>`).join('')}
+        </div>
+        <button class="btn-outline" onclick="showPage('room-detail', ${room.id})">View Details & Book</button>
+      </div>
+    </div>
+  `;
+}
+
+function renderFeaturedRooms() {
+  const el = document.getElementById('featured-rooms');
+  if (el) el.innerHTML = rooms.slice(0,3).map(roomCardHTML).join('');
+}
+
+function renderRooms() {
+  const type = document.getElementById('filter-type')?.value || '';
+  const maxPrice = parseInt(document.getElementById('filter-price')?.value || 20000);
+  
+  const filtered = rooms.filter(r => {
+    if (type && r.type !== type) return false;
+    if (r.price > maxPrice) return false;
+    return true;
+  });
+
+  const el = document.getElementById('rooms-list');
+  const none = document.getElementById('no-rooms');
+  if (el) el.innerHTML = filtered.map(roomCardHTML).join('');
+  if (none) none.style.display = filtered.length === 0 ? 'block' : 'none';
+}
+
+// ── ROOM DETAIL ──
+function renderRoomDetail(id) {
+  const room = rooms.find(r => r.id === id);
+  if (!room) { showPage('rooms'); return; }
+  selectedRoom = room;
+
+  document.getElementById('detail-header-content').innerHTML = `
+    <span class="section-label" style="color:var(--gold-light);">${room.type}</span>
+    <h1 style="font-family:var(--serif);font-size:clamp(2rem,5vw,3.5rem);font-weight:700;color:var(--white);margin-bottom:0.5rem;">${room.name}</h1>
+    <p style="color:rgba(255,255,255,0.6);font-size:0.9rem;">${room.view} · ${room.bedType} · Up to ${room.maxGuests} guests</p>
+  `;
+
+  document.getElementById('detail-content').innerHTML = `
+    <div>
+      <div class="room-gallery">
+        <div class="room-gallery-main">
+          <div class="gallery-placeholder" style="background:${room.gradient}; height:100%;">
+            <span style="font-family:var(--serif); font-size:1.2rem; color:rgba(255,255,255,0.5);">${room.name}</span>
+          </div>
+        </div>
+        <div class="room-gallery-thumb">
+          <div class="gallery-placeholder" style="background:${room.gradient.replace('135deg','200deg')}; height:100%; opacity:0.8;">
+            <span style="font-family:var(--serif); font-size:0.9rem; color:rgba(255,255,255,0.4);">Bathroom</span>
+          </div>
+        </div>
+        <div class="room-gallery-thumb">
+          <div class="gallery-placeholder" style="background:${room.gradient.replace('135deg','80deg')}; height:100%; opacity:0.8;">
+            <span style="font-family:var(--serif); font-size:0.9rem; color:rgba(255,255,255,0.4);">View</span>
+          </div>
+        </div>
+      </div>
+
+      <h2 style="font-family:var(--serif); font-size:1.6rem; font-weight:700; color:var(--charcoal); margin-bottom:1rem;">About This Room</h2>
+      <p style="color:var(--text-muted); font-weight:300; line-height:1.8; margin-bottom:1.5rem;">${room.longDesc}</p>
+
+      <h3 style="font-family:var(--serif); font-size:1.1rem; font-weight:700; margin-bottom:1rem; color:var(--charcoal);">Room Features</h3>
+      <div class="room-features">
+        ${room.amenities.map(a => `<div class="room-feature"><div class="room-feature-icon">✓</div><div class="room-feature-text">${a}</div></div>`).join('')}
+      </div>
+
+      <div style="margin-top:2rem; padding:1.5rem; background:var(--ivory); border-left:3px solid var(--gold);">
+        <h4 style="font-size:0.78rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold-dark); font-weight:600; margin-bottom:0.6rem;">Hotel Policies</h4>
+        <p style="font-size:0.85rem; color:var(--text-muted); line-height:1.7;">Check-in: 2:00 PM · Check-out: 11:00 AM · No smoking · Pets not permitted · Free cancellation up to 48 hours before check-in.</p>
+      </div>
+    </div>
+
+    <div>
+      <div class="booking-card">
+        <div class="booking-card-price">${formatPrice(room.price)}</div>
+        <div class="booking-card-per">per night · taxes included</div>
+        <div class="form-group">
+          <label>Check-in Date</label>
+          <input type="date" id="d-checkin" />
+        </div>
+        <div class="form-group">
+          <label>Check-out Date</label>
+          <input type="date" id="d-checkout" oninput="updateBookingSummary()" />
+        </div>
+        <div class="form-group">
+          <label>Guests</label>
+          <select id="d-guests">
+            ${[...Array(room.maxGuests)].map((_,i)=>`<option>${i+1}</option>`).join('')}
+          </select>
+        </div>
+        <div id="booking-summary" style="display:none;" class="modal-price-summary">
+          <div class="modal-price-row"><span>Rate per night</span><span id="s-rate">-</span></div>
+          <div class="modal-price-row"><span>Number of nights</span><span id="s-nights">-</span></div>
+          <div class="modal-price-total"><span>Total</span><span id="s-total">-</span></div>
+        </div>
+        <button class="btn-primary" style="width:100%; text-align:center; margin-top:0.75rem;" onclick="openBookingModal()">Reserve Now</button>
+        <p style="font-size:0.75rem; color:var(--text-muted); text-align:center; margin-top:0.75rem;">Free cancellation · No credit card needed</p>
+      </div>
+    </div>
+  `;
+
+  // Set default dates
+  const today = new Date();
+  const checkin = new Date(today); checkin.setDate(today.getDate()+1);
+  const checkout = new Date(today); checkout.setDate(today.getDate()+3);
+  document.getElementById('d-checkin').value = checkin.toISOString().split('T')[0];
+  document.getElementById('d-checkout').value = checkout.toISOString().split('T')[0];
+  updateBookingSummary();
+}
+
+function updateBookingSummary() {
+  const ci = document.getElementById('d-checkin')?.value;
+  const co = document.getElementById('d-checkout')?.value;
+  if (!ci || !co || !selectedRoom) return;
+  const nights = Math.max(1, Math.round((new Date(co)-new Date(ci))/(1000*60*60*24)));
+  const total = nights * selectedRoom.price;
+  document.getElementById('booking-summary').style.display = 'block';
+  document.getElementById('s-rate').textContent = formatPrice(selectedRoom.price);
+  document.getElementById('s-nights').textContent = nights;
+  document.getElementById('s-total').textContent = formatPrice(total);
+}
+
+// ── BOOKING MODAL ──
+function openBookingModal() {
+  if (!selectedRoom) return;
+  const ci = document.getElementById('d-checkin')?.value;
+  const co = document.getElementById('d-checkout')?.value;
+  const guests = document.getElementById('d-guests')?.value || 2;
+  if (!ci || !co) { showToast('Please select check-in and check-out dates.'); return; }
+  const nights = Math.max(1, Math.round((new Date(co)-new Date(ci))/(1000*60*60*24)));
+  const total = nights * selectedRoom.price;
+
+  document.getElementById('modal-content').innerHTML = `
+    <div class="modal-title">Complete Booking</div>
+    <div class="modal-room">${selectedRoom.name} · ${nights} night${nights>1?'s':''} · ${guests} guest${guests>1?'s':''}</div>
+    <div class="modal-price-summary">
+      <div class="modal-price-row"><span>Rate per night</span><span>${formatPrice(selectedRoom.price)}</span></div>
+      <div class="modal-price-row"><span>Check-in</span><span>${formatDate(ci)}</span></div>
+      <div class="modal-price-row"><span>Check-out</span><span>${formatDate(co)}</span></div>
+      <div class="modal-price-total"><span>Total (incl. taxes)</span><span>${formatPrice(total)}</span></div>
+    </div>
+    <div class="form-group"><label>Full Name *</label><input type="text" id="b-name" placeholder="Your full name" required /></div>
+    <div class="form-group"><label>Email *</label><input type="email" id="b-email" placeholder="your@email.com" required /></div>
+    <div class="form-group"><label>Phone *</label><input type="tel" id="b-phone" placeholder="+91 00000 00000" required /></div>
+    <div class="form-group"><label>Special Requests</label><textarea id="b-special" placeholder="Any special requirements…" style="min-height:80px;"></textarea></div>
+    <button class="btn-primary" style="width:100%; text-align:center;" onclick="submitBooking()">Confirm Reservation</button>
+    <p style="font-size:0.75rem; color:var(--text-muted); text-align:center; margin-top:0.75rem;">Your reservation will be confirmed via email within 2 hours.</p>
+  `;
+
+  document.getElementById('booking-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('booking-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function submitBooking() {
+  const name = document.getElementById('b-name').value.trim();
+  const email = document.getElementById('b-email').value.trim();
+  const phone = document.getElementById('b-phone').value.trim();
+  if (!name || !email || !phone) { showToast('Please fill in all required fields.'); return; }
+  if (!email.includes('@')) { showToast('Please enter a valid email address.'); return; }
+
+  document.getElementById('modal-content').innerHTML = `
+    <div class="booking-success">
+      <div class="check">✅</div>
+      <h3>Booking Confirmed!</h3>
+      <p>Thank you, <strong>${name}</strong>. Your reservation for the <strong>${selectedRoom.name}</strong> has been received.</p>
+      <br/>
+      <p style="font-size:0.82rem; color:var(--text-muted);">A confirmation will be sent to <strong>${email}</strong> within 2 hours.<br/>Booking Ref: TVR-${Math.random().toString(36).substr(2,8).toUpperCase()}</p>
+      <br/>
+      <button class="btn-primary" onclick="closeModal()" style="margin-top:1rem;">Done</button>
+    </div>
+  `;
+}
+
+function formatDate(d) {
+  return new Date(d).toLocaleDateString('en-IN', {day:'numeric', month:'short', year:'numeric'});
+}
+
+// ── CONTACT ──
+function submitContact(e) {
+  e.preventDefault();
+  const name = document.getElementById('c-name').value;
+  const email = document.getElementById('c-email').value;
+  const message = document.getElementById('c-message').value;
+  if (!name || !email || !message) return;
+  document.getElementById('contact-success').classList.add('show');
+  e.target.reset();
+  setTimeout(() => document.getElementById('contact-success').classList.remove('show'), 5000);
+}
+
+// ── TOAST ──
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// ── MOBILE MENU ──
+function toggleMobileMenu() {
+  document.getElementById('mobile-menu').classList.toggle('open');
+}
+function closeMobileMenu() {
+  document.getElementById('mobile-menu').classList.remove('open');
+}
+
+// Close modal on overlay click
+document.getElementById('booking-modal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+// ── INIT ──
+renderFeaturedRooms();
+
+// Set default date constraints for search
+const today = new Date().toISOString().split('T')[0];
+document.querySelectorAll('input[type="date"]').forEach(el => el.min = today);
+</script>
+</body>
+</html>

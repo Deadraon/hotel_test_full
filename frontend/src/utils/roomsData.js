@@ -1,0 +1,80 @@
+export const rooms = [
+  {
+    id: 1,
+    name: "Grand Deluxe Room",
+    type: "Deluxe",
+    price: 4500,
+    maxGuests: 2,
+    bedType: "King",
+    view: "Garden View",
+    description: "An elegantly appointed room featuring warm Mughal-inspired décor and a private balcony overlooking lush gardens.",
+    longDesc: "Our Grand Deluxe Rooms offer a refined retreat with rich walnut furnishings, hand-woven textiles, and contemporary amenities seamlessly integrated into a traditional aesthetic.",
+    amenities: ["King Bed", "Garden View", "Free Wi-Fi", "Air Conditioning", "Flat-screen TV", "Mini Bar"],
+    image: "https://images.unsplash.com/photo-1611892440504-42a792e24d32?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    id: 2,
+    name: "Royal Suite",
+    type: "Suite",
+    price: 9800,
+    maxGuests: 4,
+    bedType: "King + Sofa Bed",
+    view: "Taj Mahal View",
+    description: "An opulent suite with a direct view of the Taj Mahal, featuring a separate living area and a royal bathing experience.",
+    longDesc: "The Royal Suite is our flagship accommodation. Wake to the sight of the Taj Mahal glowing at dawn. Features separate living and dining areas, a butler pantry, and a marble jacuzzi.",
+    amenities: ["Taj Mahal View", "King Bed", "Living Area", "Jacuzzi", "Butler Service", "Mini Kitchen", "Free Wi-Fi"],
+    image: "https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    id: 3,
+    name: "Family Suite",
+    type: "Family",
+    price: 7200,
+    maxGuests: 5,
+    bedType: "2 Queen Beds",
+    view: "Pool View",
+    description: "A thoughtfully designed suite with two interconnected bedrooms and a stunning pool view.",
+    longDesc: "Spacious suite connecting two well-appointed bedrooms through a comfortable shared living area. Includes a dedicated reading nook and games corner for children.",
+    amenities: ["2 Queen Beds", "Pool View", "Living Room", "Kids Corner", "Free Wi-Fi", "Air Conditioning"],
+    image: "https://images.unsplash.com/photo-1566665797739-1674de7a421a?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    id: 4,
+    name: "Honeymoon Suite",
+    type: "Honeymoon",
+    price: 12500,
+    maxGuests: 2,
+    bedType: "Super King",
+    view: "Taj Mahal & Yamuna View",
+    description: "A romantic haven featuring a super-king bed, a private plunge pool, and the most breathtaking sunset views.",
+    longDesc: "A masterpiece of romance. Rose-petal turndown service, candlelit private dining, and a personal plunge pool under the stars with the Taj Mahal on the horizon.",
+    amenities: ["Taj & Yamuna View", "Super King", "Private Plunge Pool", "Rose Petal Service", "Butler", "Champagne Welcome"],
+    image: "https://images.unsplash.com/photo-1618773928121-c32242e63f39?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    id: 5,
+    name: "Classic Deluxe Room",
+    type: "Deluxe",
+    price: 3800,
+    maxGuests: 2,
+    bedType: "Queen",
+    view: "City View",
+    description: "A beautifully appointed room offering comfort and vibrant views of historic Agra.",
+    longDesc: "The Classic Deluxe Room combines comfort and style with a city-facing perspective. Includes a work desk ideal for business travellers.",
+    amenities: ["Queen Bed", "City View", "Work Desk", "Free Wi-Fi", "Air Conditioning", "Room Service"],
+    image: "https://images.unsplash.com/photo-1591088398332-8a77d399a8a5?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    id: 6,
+    name: "Premier Suite",
+    type: "Suite",
+    price: 11500,
+    maxGuests: 3,
+    bedType: "King",
+    view: "Taj Mahal View",
+    description: "A sophisticated suite that frames the Taj Mahal like a living painting.",
+    longDesc: "Redefines luxury. Floor-to-ceiling windows and private terrace present the Taj Mahal as your personal artwork. Sunken lounge and Bose sound system included.",
+    amenities: ["Taj Mahal View", "King Bed", "Private Terrace", "Bose Sound", "Butler Service", "Free Wi-Fi"],
+    image: "https://images.unsplash.com/photo-1540518614846-7eded433c457?q=80&w=1200&auto=format&fit=crop"
+  }
+];
