@@ -35,7 +35,7 @@ const Home = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-4xl md:text-8xl font-bold mb-8 leading-[1.1] md:leading-tight"
           >
-            Experience <span className="text-gold italic font-normal">Timeless</span> <br /> Luxury
+            Experience <span className="text-gold italic font-normal drop-shadow-[0_4px_15px_rgba(0,0,0,0.6)]">Timeless</span> <br /> Luxury
           </motion.h1>
           
           <motion.p 
@@ -149,11 +149,19 @@ const Home = () => {
             ].map((item, idx) => (
               <motion.div 
                 key={idx}
-                whileHover={{ y: -5 }}
-                className="flex flex-col items-center text-center p-8 border border-gold/20 hover:border-gold transition-all bg-white shadow-sm"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
+                whileHover={{ y: -10, scale: 1.02 }}
+                className="bg-white p-10 border border-gold/10 shadow-sm hover:shadow-xl hover:border-gold/30 transition-all duration-500 text-center group"
               >
-                <div className="text-gold mb-4 p-4 rounded-full bg-cream shadow-inner">{item.icon}</div>
-                <span className="text-sm font-bold tracking-widest uppercase text-charcoal">{item.name}</span>
+                <div className="text-gold mb-6 flex justify-center transform group-hover:scale-110 transition-transform duration-500">
+                  <div className="w-16 h-16 flex items-center justify-center rounded-full bg-cream/50 shadow-inner">
+                    {React.cloneElement(item.icon, { size: 28, strokeWidth: 1.2 })}
+                  </div>
+                </div>
+                <span className="text-xs font-bold tracking-[0.2em] uppercase text-charcoal/80 group-hover:text-gold transition-colors">{item.name}</span>
               </motion.div>
             ))}
           </div>
@@ -262,6 +270,21 @@ const Home = () => {
       >
         <Phone fill="white" size={24} />
       </a>
+      <style>{`
+        @keyframes zoomOut {
+          from { transform: scale(1.1); }
+          to { transform: scale(1); }
+        }
+        @theme {
+          --color-gold-light: #D4AF37;
+          --color-gold: #B8975A;
+          --color-gold-dark: #8B6F3A;
+          --color-cream: #FAF7F2;
+          --color-charcoal: #1C1814;
+          --font-serif: 'Cormorant Garamond', serif;
+          --font-sans: 'Jost', sans-serif;
+        }
+      `}</style>
     </div>
   );
 };
