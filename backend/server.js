@@ -44,6 +44,26 @@ app.use('/api/bookings', require('./routes/bookings'));
 app.use('/api/contact', require('./routes/contact'));
 app.use('/api/auth', require('./routes/auth'));
 
+// Direct Setup Route (Emergency fallback)
+app.get('/api/auth/setup', async (req, res) => {
+  try {
+    const Admin = require('./models/Admin');
+    const bcrypt = require('bcryptjs');
+    
+    const adminExists = await Admin.findOne({ username: 'admin@tajview.com' });
+    if (adminExists) return res.json({ msg: 'Admin already exists.' });
+
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash('admin123', salt);
+    const newAdmin = new Admin({ username: 'admin@tajview.com', password: hashedPassword });
+    await newAdmin.save();
+    
+    res.json({ msg: 'Admin created!', user: 'admin@tajview.com', pass: 'admin123' });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 app.get('/api/status', async (req, res) => {
   try {
     const status = mongoose.connection.readyState === 1 ? 'Connected' : 'Disconnected';
