@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Facebook, Instagram, Twitter, MapPin, Phone, Mail } from 'lucide-react';
+import { Facebook, Instagram, X, MapPin, Phone, Mail } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -19,7 +19,7 @@ const Footer = () => {
             <div className="flex gap-4">
               <a href="#" className="p-2 bg-white/5 hover:bg-gold hover:text-white transition-all rounded-full"><Instagram size={18} /></a>
               <a href="#" className="p-2 bg-white/5 hover:bg-gold hover:text-white transition-all rounded-full"><Facebook size={18} /></a>
-              <a href="#" className="p-2 bg-white/5 hover:bg-gold hover:text-white transition-all rounded-full"><Twitter size={18} /></a>
+              <a href="#" className="p-2 bg-white/5 hover:bg-gold hover:text-white transition-all rounded-full"><X size={18} /></a>
             </div>
           </div>
 
