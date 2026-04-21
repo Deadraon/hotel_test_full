@@ -78,14 +78,14 @@ const Navbar = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="absolute top-full left-0 w-full bg-cream/95 backdrop-blur-xl border-b border-gold/10 p-8 flex flex-col space-y-6 md:hidden shadow-2xl"
+            className="absolute top-full left-0 w-full bg-white/20 backdrop-blur-3xl border-y border-white/20 p-10 flex flex-col space-y-8 md:hidden shadow-2xl"
           >
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 to={link.path}
                 onClick={() => setIsOpen(false)}
-                className="text-sm uppercase tracking-widest font-semibold text-charcoal border-b border-gold/5 pb-4 transition-colors hover:text-gold"
+                className="text-xs uppercase tracking-[0.3em] font-bold text-charcoal border-b border-black/5 pb-4 transition-all hover:text-gold hover:pl-2"
               >
                 {link.name}
               </Link>
@@ -93,9 +93,9 @@ const Navbar = () => {
             <Link 
               to="/rooms" 
               onClick={() => setIsOpen(false)} 
-              className="btn-luxury text-center mt-4"
+              className="btn-luxury text-center mt-6 !py-5 shadow-xl"
             >
-              Book Now
+              Book Your Stay
             </Link>
           </motion.div>
         )}
