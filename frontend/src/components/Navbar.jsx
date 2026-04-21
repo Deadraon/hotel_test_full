@@ -15,6 +15,16 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [location.pathname]);
 
+  // Lock body scroll when menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => { document.body.style.overflow = 'unset'; };
+  }, [isOpen]);
+
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'Rooms & Suites', path: '/rooms' },
@@ -55,63 +65,71 @@ const Navbar = () => {
         </button>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Dropdown */}
       <AnimatePresence>
         {isOpen && (
-          <>
-            {/* Backdrop for closing */}
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setIsOpen(false)}
-              className="fixed inset-0 bg-black/40 backdrop-blur-sm z-[55] md:hidden"
-            />
-            
-            {/* Slide-out Drawer */}
-            <motion.div
-              initial={{ x: '100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed inset-y-0 right-0 w-[80%] bg-charcoal/95 backdrop-blur-2xl z-[60] flex flex-col p-10 border-l border-gold/20 shadow-2xl md:hidden"
-            >
+          <motion.div
+            initial={{ y: '-100%', opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: '-100%', opacity: 0 }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            className="fixed inset-0 bg-charcoal/90 backdrop-blur-2xl z-[60] flex flex-col p-10 md:hidden"
+          >
+            <div className="flex justify-between items-center mb-16">
+              <Link to="/" onClick={() => setIsOpen(false)} className="flex flex-col">
+                <span className="text-xl font-bold tracking-[0.4em] text-white">TAJ VIEW</span>
+                <span className="text-[8px] tracking-[0.5em] text-gold-light uppercase">Residency · Agra</span>
+              </Link>
               <button 
                 onClick={() => setIsOpen(false)}
-                className="self-end text-gold p-2 hover:scale-110 transition-transform mb-12"
+                className="text-gold p-2 hover:scale-110 transition-transform"
               >
                 <X size={32} />
               </button>
+            </div>
 
-              <div className="flex flex-col space-y-8">
-                {navLinks.map((link, idx) => (
-                  <Link
-                    key={link.name}
-                    to={link.path}
-                    onClick={() => setIsOpen(false)}
-                    className={`text-2xl font-serif tracking-[0.1em] transition-all ${
-                      location.pathname === link.path ? 'text-gold pl-2 border-l-2 border-gold' : 'text-white'
-                    }`}
+            <div className="flex flex-col space-y-10">
+              {navLinks.map((link, idx) => (
+                <Link
+                  key={link.name}
+                  to={link.path}
+                  onClick={() => setIsOpen(false)}
+                  className={`text-3xl font-serif tracking-[0.2em] transition-all ${
+                    location.pathname === link.path ? 'text-gold' : 'text-white/80'
+                  }`}
+                >
+                  <motion.span
+                    initial={{ x: -20, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ delay: idx * 0.1 }}
                   >
                     {link.name}
-                  </Link>
-                ))}
-                
-                <Link 
-                  to="/rooms" 
-                  onClick={() => setIsOpen(false)}
-                  className="btn-luxury w-full text-center py-5 mt-10 !text-[10px]"
-                >
-                  Book Now
+                  </motion.span>
                 </Link>
-              </div>
+              ))}
+              
+              <Link 
+                to="/rooms" 
+                onClick={() => setIsOpen(false)}
+                className="btn-luxury w-full text-center py-6 mt-10 !text-[10px]"
+              >
+                Book Your Stay
+              </Link>
+            </div>
 
-              <div className="mt-auto pt-10 border-t border-white/5">
-                <p className="text-[10px] uppercase tracking-[0.3em] text-white/30 mb-2 font-bold">Inquiries</p>
-                <p className="text-gold-light font-serif text-lg">+91 562 223 0000</p>
+            <div className="mt-auto pb-10 border-t border-white/10 pt-10">
+              <div className="flex justify-between items-end">
+                <div>
+                  <p className="text-[10px] uppercase tracking-[0.3em] text-white/30 mb-2 font-bold">Reservations</p>
+                  <p className="text-gold-light font-serif text-xl">+91 562 223 0000</p>
+                </div>
+                <div className="text-right">
+                  <p className="text-[10px] uppercase tracking-[0.3em] text-white/30 mb-2 font-bold">Location</p>
+                  <p className="text-white font-serif">Taj Ganj, Agra</p>
+                </div>
               </div>
-            </motion.div>
-          </>
+            </div>
+          </motion.div>
         )}
       </AnimatePresence>
     </nav>
