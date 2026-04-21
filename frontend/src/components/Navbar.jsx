@@ -59,24 +59,49 @@ const Navbar = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="absolute top-full left-0 w-full bg-cream/95 backdrop-blur-xl border-b border-gold/10 p-8 flex flex-col space-y-6 md:hidden shadow-2xl"
+            initial={false}
+            animate={isOpen ? { x: 0, opacity: 1 } : { x: '100%', opacity: 0 }}
+            className="fixed inset-y-0 right-0 w-[85%] bg-charcoal/98 backdrop-blur-2xl z-[60] flex flex-col p-12 border-l border-gold/20 shadow-[-20px_0_50px_rgba(0,0,0,0.5)]"
           >
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                to={link.path}
+            <button 
+              onClick={() => setIsOpen(false)}
+              className="absolute top-8 right-8 text-gold-light p-2 hover:rotate-90 transition-transform duration-300"
+            >
+              <X size={32} strokeWidth={1} />
+            </button>
+
+            <div className="flex flex-col gap-8 mt-20">
+              {navLinks.map((link, idx) => (
+                <Link
+                  key={link.name}
+                  to={link.path}
+                  onClick={() => setIsOpen(false)}
+                  className={`text-2xl font-serif tracking-[0.1em] ${
+                    location.pathname === link.path ? 'text-gold' : 'text-white'
+                  }`}
+                >
+                  <motion.span
+                    initial={{ x: 20, opacity: 0 }}
+                    animate={isOpen ? { x: 0, opacity: 1 } : { x: 20, opacity: 0 }}
+                    transition={{ delay: idx * 0.1 }}
+                  >
+                    {link.name}
+                  </motion.span>
+                </Link>
+              ))}
+              <Link 
+                to="/rooms" 
                 onClick={() => setIsOpen(false)}
-                className="text-sm uppercase tracking-widest font-semibold text-charcoal border-b border-gold/5 pb-2"
+                className="btn-luxury text-center mt-12 py-5"
               >
-                {link.name}
+                Reserve Now
               </Link>
-            ))}
-            <Link to="/rooms" onClick={() => setIsOpen(false)} className="btn-luxury text-center">
-              Book Now
-            </Link>
+            </div>
+
+            <div className="mt-auto border-t border-gold/10 pt-10">
+              <p className="text-[10px] uppercase tracking-[0.3em] text-white/40 mb-4 font-bold">Contact Guest Services</p>
+              <p className="text-gold-light font-serif text-lg">+91 562 223 0000</p>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
