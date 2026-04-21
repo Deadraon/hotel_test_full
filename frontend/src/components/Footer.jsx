@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Facebook, Instagram, X, MapPin, Phone, Mail } from 'lucide-react';
+import { MapPin, Phone, Mail, Home } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -17,9 +17,7 @@ const Footer = () => {
               A sanctuary of luxury and tranquility in the shadow of the world's most iconic monument. Experience the timeless charm of Agra at Taj View Residency.
             </p>
             <div className="flex gap-4">
-              <a href="#" className="p-2 bg-white/5 hover:bg-gold hover:text-white transition-all rounded-full"><Instagram size={18} /></a>
-              <a href="#" className="p-2 bg-white/5 hover:bg-gold hover:text-white transition-all rounded-full"><Facebook size={18} /></a>
-              <a href="#" className="p-2 bg-white/5 hover:bg-gold hover:text-white transition-all rounded-full"><X size={18} /></a>
+              <span className="text-gold/50 text-[10px] uppercase tracking-widest">Luxury & Comfort</span>
             </div>
           </div>
 
