@@ -13,12 +13,14 @@ const AdminLogin = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/login`, formData);
+      // Use relative path for Vercel monorepo compatibility
+      const res = await axios.post(`/api/auth/login`, formData);
       localStorage.setItem('adminToken', res.data.token);
       toast.success("Login successful!");
       navigate('/admin/dashboard');
     } catch (err) {
-      toast.error("Invalid credentials");
+      const errorMsg = err.response?.data?.msg || "Login failed";
+      toast.error(errorMsg);
     } finally {
       setLoading(false);
     }

@@ -10,10 +10,10 @@ router.post('/login', async (req, res) => {
   const { username, password } = req.body;
   try {
     let admin = await Admin.findOne({ username });
-    if (!admin) return res.status(400).json({ msg: 'Invalid Credentials' });
+    if (!admin) return res.status(400).json({ msg: 'User not found' });
 
     const isMatch = await bcrypt.compare(password, admin.password);
-    if (!isMatch) return res.status(400).json({ msg: 'Invalid Credentials' });
+    if (!isMatch) return res.status(400).json({ msg: 'Password incorrect' });
 
     const payload = { admin: { id: admin.id } };
     jwt.sign(payload, process.env.JWT_SECRET || 'tvr_secret', { expiresIn: '1h' }, (err, token) => {
@@ -21,8 +21,8 @@ router.post('/login', async (req, res) => {
       res.json({ token });
     });
   } catch (err) {
-    console.error(err.message);
-    res.status(500).send('Server Error');
+    console.error('Login Error:', err.message);
+    res.status(500).json({ error: 'Server error during login' });
   }
 });
 
