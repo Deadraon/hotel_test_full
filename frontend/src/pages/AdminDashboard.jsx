@@ -24,8 +24,8 @@ const AdminDashboard = () => {
   const fetchData = async () => {
     try {
       const [bookingsRes, messagesRes] = await Promise.all([
-        axios.get('http://localhost:5000/api/bookings'),
-        axios.get('http://localhost:5000/api/contact')
+        axios.get(`${import.meta.env.VITE_API_URL}/api/bookings`),
+        axios.get(`${import.meta.env.VITE_API_URL}/api/contact`)
       ]);
       setBookings(bookingsRes.data);
       setMessages(messagesRes.data);
@@ -39,7 +39,7 @@ const AdminDashboard = () => {
   const deleteBooking = async (id) => {
     if (!window.confirm("Are you sure you want to delete this booking?")) return;
     try {
-      await axios.delete(`http://localhost:5000/api/bookings/${id}`);
+      await axios.delete(`${import.meta.env.VITE_API_URL}/api/bookings/${id}`);
       setBookings(bookings.filter(b => b._id !== id));
       toast.success("Booking deleted");
     } catch (err) {

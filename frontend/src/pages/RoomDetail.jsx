@@ -44,7 +44,7 @@ const RoomDetail = () => {
 
     setLoading(true);
     try {
-      const response = await axios.post('http://localhost:5000/api/bookings/book', {
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/bookings/book`, {
         ...formData,
         roomId: room.id,
         roomName: room.name,
