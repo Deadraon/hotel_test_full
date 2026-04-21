@@ -12,9 +12,9 @@ const Home = () => {
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-black/30 z-10"></div>
         <div 
-          className="absolute inset-0 bg-cover bg-center transition-transform duration-[10s]"
+          className="absolute inset-0 bg-cover bg-center"
           style={{ 
-            backgroundImage: `url('https://images.unsplash.com/photo-1548013146-72479768bbaa?q=80&w=2000&auto=format&fit=crop')`,
+            backgroundImage: `url('/hero.png')`,
             animation: 'zoomOut 20s linear infinite alternate'
           }}
         ></div>
