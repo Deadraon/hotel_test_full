@@ -36,7 +36,9 @@ const Navbar = () => {
               key={link.name}
               to={link.path}
               className={`text-[10px] uppercase tracking-[0.2em] font-bold transition-all hover:text-gold ${
-                location.pathname === link.path ? 'text-gold' : scrolled ? 'text-charcoal' : 'text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]'
+                location.pathname === link.path 
+                  ? (scrolled ? 'text-gold-dark border-b border-gold-dark' : 'text-gold border-b border-gold') 
+                  : scrolled ? 'text-charcoal' : 'text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]'
               }`}
             >
               {link.name}

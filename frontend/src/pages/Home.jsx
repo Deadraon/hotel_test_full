@@ -128,15 +128,17 @@ const Home = () => {
       </section>
 
       {/* Amenities Grid */}
-      <section className="py-24 bg-white">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <span className="text-gold uppercase tracking-[0.3em] text-xs font-bold mb-4 block">World Class</span>
-            <h2 className="text-4xl font-bold mb-4">Hotel Amenities</h2>
-            <div className="w-16 h-1 bg-gold mx-auto"></div>
+      <section className="py-24 bg-charcoal relative overflow-hidden">
+        {/* Subtle decorative background element */}
+        <div className="absolute top-0 left-0 w-full h-full opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, #B8975A 1px, transparent 0)', backgroundSize: '40px 40px' }}></div>
+        <div className="container mx-auto px-6 relative z-10">
+          <div className="text-center mb-20">
+            <span className="text-gold-light uppercase tracking-[0.4em] text-xs font-bold mb-4 block">World Class Experience</span>
+            <h2 className="text-4xl md:text-6xl font-bold mb-6 text-white">Hotel Amenities</h2>
+            <div className="w-24 h-1 bg-gold mx-auto"></div>
           </div>
           
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10">
             {[
               { icon: <Wifi />, name: "Free Wi-Fi" },
               { icon: <Waves />, name: "Swimming Pool" },
@@ -153,15 +155,15 @@ const Home = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
-                whileHover={{ y: -10, scale: 1.02 }}
-                className="bg-white p-10 border border-gold/10 shadow-sm hover:shadow-xl hover:border-gold/30 transition-all duration-500 text-center group"
+                whileHover={{ y: -10, scale: 1.05 }}
+                className="bg-white/5 border border-gold/20 p-8 md:p-12 text-center group hover:border-gold transition-all duration-500 shadow-2xl backdrop-blur-sm"
               >
-                <div className="text-gold mb-6 flex justify-center transform group-hover:scale-110 transition-transform duration-500">
-                  <div className="w-16 h-16 flex items-center justify-center rounded-full bg-cream/50 shadow-inner">
-                    {React.cloneElement(item.icon, { size: 28, strokeWidth: 1.2 })}
+                <div className="text-gold mb-8 flex justify-center group-hover:text-gold-light transition-colors">
+                  <div className="w-16 h-16 flex items-center justify-center rounded-full bg-white/5 border border-gold/10 group-hover:border-gold/30 transition-all">
+                    {React.cloneElement(item.icon, { size: 32, strokeWidth: 1.2 })}
                   </div>
                 </div>
-                <span className="text-xs font-bold tracking-[0.2em] uppercase text-charcoal/80 group-hover:text-gold transition-colors">{item.name}</span>
+                <span className="text-[10px] md:text-xs font-bold tracking-[0.3em] uppercase text-white/80 group-hover:text-gold transition-colors">{item.name}</span>
               </motion.div>
             ))}
           </div>
