@@ -78,7 +78,7 @@ const Navbar = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="absolute top-full left-0 w-full bg-white/20 backdrop-blur-3xl border-y border-white/20 p-10 flex flex-col space-y-8 md:hidden shadow-2xl"
+            className="absolute top-full left-0 w-full bg-white/90 backdrop-blur-xl border-y border-black/5 p-10 flex flex-col space-y-8 md:hidden shadow-2xl"
           >
             {navLinks.map((link) => (
               <Link
