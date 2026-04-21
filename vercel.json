@@ -1,12 +1,9 @@
 {
+  "version": 2,
   "rewrites": [
     {
-      "source": "/api/(.*)",
+      "source": "/api/:match*",
       "destination": "/backend/server.js"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/frontend/$1"
     }
   ],
   "builds": [
