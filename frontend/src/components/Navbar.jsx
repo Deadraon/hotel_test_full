@@ -8,12 +8,26 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
 
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [showNavbar, setShowNavbar] = useState(true);
+
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50 || location.pathname !== '/');
-    handleScroll(); // Initialize
+    const handleScroll = () => {
+      // Background scrolled state
+      setScrolled(window.scrollY > 50 || location.pathname !== '/');
+      
+      // Hide on scroll down, show on scroll up
+      if (window.scrollY > lastScrollY && window.scrollY > 200) {
+        setShowNavbar(false);
+      } else {
+        setShowNavbar(true);
+      }
+      setLastScrollY(window.scrollY);
+    };
+    
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [location.pathname]);
+  }, [lastScrollY, location.pathname]);
 
   // Lock body scroll when menu is open
   useEffect(() => {
@@ -37,7 +51,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-500 ${scrolled ? 'glass-nav py-3' : 'bg-transparent py-6'}`}>
+    <nav className={`fixed w-full z-50 transition-all duration-500 ${scrolled ? 'glass-nav py-3' : 'bg-transparent py-6'} ${showNavbar ? 'translate-y-0' : '-translate-y-full opacity-0'}`}>
       <div className="container mx-auto px-6 flex justify-between items-center">
         <Link to="/" className="flex flex-col">
           <span className={`font-serif text-2xl font-bold tracking-[0.2em] leading-none ${scrolled ? 'text-gold-dark' : 'text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]'}`}>TAJ VIEW</span>
@@ -70,34 +84,45 @@ const Navbar = () => {
         </button>
       </div>
 
-      {/* Mobile Menu Dropdown (Light Theme) */}
+      {/* Mobile Menu Dropdown (Focus Mode) */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
-            className="absolute top-full left-0 w-full bg-white/90 backdrop-blur-xl border-y border-black/5 p-10 flex flex-col space-y-8 md:hidden shadow-2xl"
-          >
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                to={link.path}
-                onClick={() => setIsOpen(false)}
-                className="text-xs uppercase tracking-[0.3em] font-bold text-charcoal border-b border-black/5 pb-4 transition-all hover:text-gold hover:pl-2"
-              >
-                {link.name}
-              </Link>
-            ))}
-            <Link 
-              to="/rooms" 
-              onClick={() => setIsOpen(false)} 
-              className="btn-luxury text-center mt-6 !py-5 shadow-xl"
+          <>
+            {/* Backdrop to hide/blur background content */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsOpen(false)}
+              className="fixed inset-0 bg-white/60 backdrop-blur-md z-[55] md:hidden"
+            />
+            
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+              className="absolute top-full left-0 w-full bg-white/95 backdrop-blur-3xl border-y border-black/5 p-10 flex flex-col space-y-8 md:hidden shadow-2xl z-[60]"
             >
-              Book Your Stay
-            </Link>
-          </motion.div>
+              {navLinks.map((link) => (
+                <Link
+                  key={link.name}
+                  to={link.path}
+                  onClick={() => setIsOpen(false)}
+                  className="text-xs uppercase tracking-[0.3em] font-bold text-charcoal border-b border-black/5 pb-4 transition-all hover:text-gold hover:pl-2"
+                >
+                  {link.name}
+                </Link>
+              ))}
+              <Link 
+                to="/rooms" 
+                onClick={() => setIsOpen(false)} 
+                className="btn-luxury text-center mt-6 !py-5 shadow-xl"
+              >
+                Book Your Stay
+              </Link>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </nav>
