@@ -19,10 +19,15 @@ const Navbar = () => {
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'unset';
+      document.documentElement.style.overflow = 'unset';
     }
-    return () => { document.body.style.overflow = 'unset'; };
+    return () => { 
+      document.body.style.overflow = 'unset'; 
+      document.documentElement.style.overflow = 'unset';
+    };
   }, [isOpen]);
 
   const navLinks = [
@@ -65,70 +70,33 @@ const Navbar = () => {
         </button>
       </div>
 
-      {/* Mobile Menu Dropdown */}
+      {/* Mobile Menu Dropdown (Light Theme) */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ y: '-100%', opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: '-100%', opacity: 0 }}
-            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 bg-charcoal/90 backdrop-blur-2xl z-[60] flex flex-col p-10 md:hidden"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+            className="absolute top-full left-0 w-full bg-cream/95 backdrop-blur-xl border-b border-gold/10 p-8 flex flex-col space-y-6 md:hidden shadow-2xl"
           >
-            <div className="flex justify-between items-center mb-16">
-              <Link to="/" onClick={() => setIsOpen(false)} className="flex flex-col">
-                <span className="text-xl font-bold tracking-[0.4em] text-white">TAJ VIEW</span>
-                <span className="text-[8px] tracking-[0.5em] text-gold-light uppercase">Residency · Agra</span>
-              </Link>
-              <button 
+            {navLinks.map((link) => (
+              <Link
+                key={link.name}
+                to={link.path}
                 onClick={() => setIsOpen(false)}
-                className="text-gold p-2 hover:scale-110 transition-transform"
+                className="text-sm uppercase tracking-widest font-semibold text-charcoal border-b border-gold/5 pb-4 transition-colors hover:text-gold"
               >
-                <X size={32} />
-              </button>
-            </div>
-
-            <div className="flex flex-col space-y-10">
-              {navLinks.map((link, idx) => (
-                <Link
-                  key={link.name}
-                  to={link.path}
-                  onClick={() => setIsOpen(false)}
-                  className={`text-3xl font-serif tracking-[0.2em] transition-all ${
-                    location.pathname === link.path ? 'text-gold' : 'text-white/80'
-                  }`}
-                >
-                  <motion.span
-                    initial={{ x: -20, opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    transition={{ delay: idx * 0.1 }}
-                  >
-                    {link.name}
-                  </motion.span>
-                </Link>
-              ))}
-              
-              <Link 
-                to="/rooms" 
-                onClick={() => setIsOpen(false)}
-                className="btn-luxury w-full text-center py-6 mt-10 !text-[10px]"
-              >
-                Book Your Stay
+                {link.name}
               </Link>
-            </div>
-
-            <div className="mt-auto pb-10 border-t border-white/10 pt-10">
-              <div className="flex justify-between items-end">
-                <div>
-                  <p className="text-[10px] uppercase tracking-[0.3em] text-white/30 mb-2 font-bold">Reservations</p>
-                  <p className="text-gold-light font-serif text-xl">+91 562 223 0000</p>
-                </div>
-                <div className="text-right">
-                  <p className="text-[10px] uppercase tracking-[0.3em] text-white/30 mb-2 font-bold">Location</p>
-                  <p className="text-white font-serif">Taj Ganj, Agra</p>
-                </div>
-              </div>
-            </div>
+            ))}
+            <Link 
+              to="/rooms" 
+              onClick={() => setIsOpen(false)} 
+              className="btn-luxury text-center mt-4"
+            >
+              Book Now
+            </Link>
           </motion.div>
         )}
       </AnimatePresence>
