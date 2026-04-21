@@ -2,9 +2,9 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Star, MapPin, Phone, Mail, Clock, Wifi, Waves, Utensils, Car, Wind, UserCheck, Heart, Dumbbell } from 'lucide-react';
+import heroImage from '../assets/hero.png';
 
 const Home = () => {
-  const heroImage = "/hero.png"; 
 
   return (
     <div className="overflow-hidden">
@@ -14,7 +14,7 @@ const Home = () => {
         <div 
           className="absolute inset-0 bg-cover bg-center"
           style={{ 
-            backgroundImage: `url('/hero.png')`,
+            backgroundImage: `url('${heroImage}')`,
             animation: 'zoomOut 20s linear infinite alternate'
           }}
         ></div>
