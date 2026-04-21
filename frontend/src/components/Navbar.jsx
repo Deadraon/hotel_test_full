@@ -58,40 +58,60 @@ const Navbar = () => {
       {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="fixed inset-0 bg-charcoal/95 backdrop-blur-2xl z-[60] flex flex-col items-center justify-center space-y-8"
-          >
-            <button 
+          <>
+            {/* Backdrop for closing */}
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
               onClick={() => setIsOpen(false)}
-              className="absolute top-8 right-8 text-gold p-4 hover:scale-110 transition-transform"
-            >
-              <X size={32} />
-            </button>
-
-            {navLinks.map((link, idx) => (
-              <Link
-                key={link.name}
-                to={link.path}
-                onClick={() => setIsOpen(false)}
-                className={`text-3xl font-serif tracking-[0.2em] transition-colors ${
-                  location.pathname === link.path ? 'text-gold' : 'text-white hover:text-gold'
-                }`}
-              >
-                {link.name}
-              </Link>
-            ))}
+              className="fixed inset-0 bg-black/40 backdrop-blur-sm z-[55] md:hidden"
+            />
             
-            <Link 
-              to="/rooms" 
-              onClick={() => setIsOpen(false)}
-              className="btn-luxury px-12 py-5 mt-4"
+            {/* Slide-out Drawer */}
+            <motion.div
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+              className="fixed inset-y-0 right-0 w-[80%] bg-charcoal/95 backdrop-blur-2xl z-[60] flex flex-col p-10 border-l border-gold/20 shadow-2xl md:hidden"
             >
-              Reserve Now
-            </Link>
-          </motion.div>
+              <button 
+                onClick={() => setIsOpen(false)}
+                className="self-end text-gold p-2 hover:scale-110 transition-transform mb-12"
+              >
+                <X size={32} />
+              </button>
+
+              <div className="flex flex-col space-y-8">
+                {navLinks.map((link, idx) => (
+                  <Link
+                    key={link.name}
+                    to={link.path}
+                    onClick={() => setIsOpen(false)}
+                    className={`text-2xl font-serif tracking-[0.1em] transition-all ${
+                      location.pathname === link.path ? 'text-gold pl-2 border-l-2 border-gold' : 'text-white'
+                    }`}
+                  >
+                    {link.name}
+                  </Link>
+                ))}
+                
+                <Link 
+                  to="/rooms" 
+                  onClick={() => setIsOpen(false)}
+                  className="btn-luxury w-full text-center py-5 mt-10 !text-[10px]"
+                >
+                  Book Now
+                </Link>
+              </div>
+
+              <div className="mt-auto pt-10 border-t border-white/5">
+                <p className="text-[10px] uppercase tracking-[0.3em] text-white/30 mb-2 font-bold">Inquiries</p>
+                <p className="text-gold-light font-serif text-lg">+91 562 223 0000</p>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </nav>
