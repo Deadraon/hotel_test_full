@@ -33,7 +33,7 @@ const Home = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-5xl md:text-8xl font-bold mb-8 leading-tight"
+            className="text-4xl md:text-8xl font-bold mb-8 leading-[1.1] md:leading-tight"
           >
             Experience <span className="text-gold italic font-normal">Timeless</span> <br /> Luxury
           </motion.h1>
@@ -42,7 +42,7 @@ const Home = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="max-w-2xl mx-auto text-lg md:text-xl font-light text-white mb-12 drop-shadow-md"
+            className="max-w-2xl mx-auto text-base md:text-xl font-light text-white mb-10 drop-shadow-md px-4"
           >
             A refined sanctuary just moments away from the magnificent Taj Mahal. Immerse yourself in Mughal-inspired elegance.
           </motion.p>
@@ -56,7 +56,7 @@ const Home = () => {
             <Link to="/rooms" className="btn-luxury w-full md:w-auto">Explore Rooms</Link>
             <button 
               onClick={() => document.getElementById('location').scrollIntoView({ behavior: 'smooth' })}
-              className="btn-luxury-outline text-white border-white/40 hover:border-white w-full md:w-auto"
+              className="btn-luxury-outline !text-white !border-white/60 hover:!border-white w-full md:w-auto"
             >
               Our Location
             </button>
