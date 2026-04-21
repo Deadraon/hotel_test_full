@@ -27,6 +27,15 @@ app.use('/api/bookings', require('./routes/bookings'));
 app.use('/api/contact', require('./routes/contact'));
 app.use('/api/auth', require('./routes/auth'));
 
+app.get('/api/status', (req, res) => {
+  const status = mongoose.connection.readyState === 1 ? 'Connected' : 'Disconnected';
+  res.json({
+    server: 'Running',
+    database: status,
+    timestamp: new Date()
+  });
+});
+
 app.get('/', (req, res) => {
   res.send('Taj View Residency API is running...');
 });
