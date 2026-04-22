@@ -1,8 +1,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Star, MapPin, Phone, Mail, Clock, Wifi, Waves, Utensils, Car, Wind, UserCheck, Heart, Dumbbell } from 'lucide-react';
+import { Star, MapPin, Phone, Mail, Clock, Wifi, Waves, Utensils, Car, Wind, Heart, Dumbbell } from 'lucide-react';
 import heroImage from '../assets/hero.png';
+
+const MotionDiv = motion.div;
+const MotionHeading = motion.h1;
+const MotionParagraph = motion.p;
+const MotionSpan = motion.span;
 
 const Home = () => {
 
@@ -11,43 +16,44 @@ const Home = () => {
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-black/30 z-10"></div>
-        <div 
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ 
-            backgroundImage: `url('${heroImage}')`,
-            animation: 'zoomOut 20s linear infinite alternate'
-          }}
-        ></div>
+        <img
+          src={heroImage}
+          alt=""
+          aria-hidden="true"
+          fetchPriority="high"
+          decoding="async"
+          className="absolute inset-0 h-full w-full object-cover hero-zoom"
+        />
         
         <div className="container mx-auto px-6 relative z-20 text-center text-white">
-          <motion.span 
+          <MotionSpan
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="inline-block border border-gold/40 px-6 py-2 uppercase tracking-[0.4em] text-[10px] font-semibold mb-8 backdrop-blur-sm"
           >
             Agra's Premier Luxury Hotel
-          </motion.span>
+          </MotionSpan>
           
-          <motion.h1 
+          <MotionHeading
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-4xl md:text-8xl font-bold mb-8 leading-[1.1] md:leading-tight"
           >
             Experience <span className="text-gold italic font-normal drop-shadow-[0_4px_15px_rgba(0,0,0,0.6)]">Timeless</span> <br /> Luxury
-          </motion.h1>
+          </MotionHeading>
           
-          <motion.p 
+          <MotionParagraph
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
             className="max-w-2xl mx-auto text-base md:text-xl font-light text-white mb-10 drop-shadow-md px-4"
           >
             A refined sanctuary just moments away from the magnificent Taj Mahal. Immerse yourself in Mughal-inspired elegance.
-          </motion.p>
+          </MotionParagraph>
           
-          <motion.div 
+          <MotionDiv
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
@@ -55,28 +61,28 @@ const Home = () => {
           >
             <Link to="/rooms" className="btn-luxury w-full md:w-auto">Explore Rooms</Link>
             <button 
-              onClick={() => document.getElementById('location').scrollIntoView({ behavior: 'smooth' })}
+              onClick={() => document.getElementById('location')?.scrollIntoView({ behavior: 'smooth' })}
               className="btn-luxury-outline !text-white !border-white/60 hover:!border-white w-full md:w-auto"
             >
               Our Location
             </button>
-          </motion.div>
+          </MotionDiv>
         </div>
         
         {/* Scroll Indicator */}
-        <motion.div 
+        <MotionDiv
           animate={{ y: [0, 10, 0] }}
           transition={{ repeat: Infinity, duration: 2 }}
           className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20"
         >
           <div className="w-[1px] h-20 bg-gradient-to-b from-transparent via-gold to-transparent"></div>
-        </motion.div>
+        </MotionDiv>
       </section>
 
       {/* About Section */}
       <section className="py-24 bg-cream">
         <div className="container mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
-          <motion.div
+          <MotionDiv
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -103,26 +109,26 @@ const Home = () => {
                 <span className="text-[10px] uppercase tracking-widest text-charcoal/50">Guest Rating</span>
               </div>
             </div>
-          </motion.div>
+          </MotionDiv>
           
-          <div className="grid grid-cols-2 gap-4 h-[500px]">
-            <motion.div 
+          <div className="grid grid-cols-2 gap-4 h-[360px] md:h-[500px]">
+            <MotionDiv
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               className="bg-charcoal rounded-tl-[100px] overflow-hidden"
             >
-              <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=800&auto=format&fit=crop" alt="Lobby" className="w-full h-full object-cover opacity-80" />
-            </motion.div>
-            <motion.div 
+              <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=70&w=640&auto=format&fit=crop" alt="Hotel lobby seating with warm luxury lighting" loading="lazy" decoding="async" className="w-full h-full object-cover opacity-80" />
+            </MotionDiv>
+            <MotionDiv
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
               className="bg-gold-dark rounded-br-[100px] overflow-hidden mt-12"
             >
-              <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800&auto=format&fit=crop" alt="Pool" className="w-full h-full object-cover opacity-80" />
-            </motion.div>
+              <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=70&w=640&auto=format&fit=crop" alt="Luxury hotel pool beside guest rooms" loading="lazy" decoding="async" className="w-full h-full object-cover opacity-80" />
+            </MotionDiv>
           </div>
         </div>
       </section>
@@ -149,14 +155,14 @@ const Home = () => {
               { icon: <Heart />, name: "Spa & Wellness" },
               { icon: <Dumbbell />, name: "Fitness Centre" },
             ].map((item, idx) => (
-              <motion.div 
+              <MotionDiv
                 key={idx}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
                 whileHover={{ y: -10, scale: 1.05 }}
-                className="bg-white/5 border border-gold/20 p-8 md:p-12 text-center group hover:border-gold transition-all duration-500 shadow-2xl backdrop-blur-sm"
+                className="bg-white/5 border border-gold/20 p-5 sm:p-8 md:p-12 text-center group hover:border-gold transition-all duration-500 shadow-2xl backdrop-blur-sm"
               >
                 <div className="text-gold mb-8 flex justify-center group-hover:text-gold-light transition-colors">
                   <div className="w-16 h-16 flex items-center justify-center rounded-full bg-white/5 border border-gold/10 group-hover:border-gold/30 transition-all">
@@ -164,7 +170,7 @@ const Home = () => {
                   </div>
                 </div>
                 <span className="text-[10px] md:text-xs font-bold tracking-[0.3em] uppercase text-white/80 group-hover:text-gold transition-colors">{item.name}</span>
-              </motion.div>
+              </MotionDiv>
             ))}
           </div>
         </div>
@@ -198,7 +204,7 @@ const Home = () => {
                 room: "Royal Deluxe Room"
               }
             ].map((review, idx) => (
-              <motion.div 
+              <MotionDiv
                 key={idx}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -209,12 +215,12 @@ const Home = () => {
                 <div className="flex gap-1 text-gold mb-6">
                   {[...Array(5)].map((_, i) => <Star key={i} size={16} fill="#B8975A" />)}
                 </div>
-                <p className="text-xl font-serif italic mb-8 text-white/90 leading-relaxed">"{review.text}"</p>
+                <p className="text-lg md:text-xl font-serif italic mb-8 text-white/90 leading-relaxed">"{review.text}"</p>
                 <div className="border-t border-white/10 pt-6">
                   <span className="block font-bold tracking-widest text-xs uppercase mb-1">{review.author}</span>
                   <span className="text-[10px] text-gold uppercase tracking-widest">{review.room}</span>
                 </div>
-              </motion.div>
+              </MotionDiv>
             ))}
           </div>
         </div>
@@ -253,6 +259,7 @@ const Home = () => {
           
           <div className="h-[450px] w-full bg-white shadow-2xl p-2">
             <iframe 
+              title="Map showing Taj View Residency near the Taj Mahal"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14192.189543839!2d78.034831!3d27.173891!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39747121d702ff6d%3A0xdd2ae4803f767dde!2sTaj%20Mahal!5e0!3m2!1sen!2sin!4v1700000000000" 
               className="w-full h-full border-0"
               allowFullScreen="" 
@@ -268,25 +275,11 @@ const Home = () => {
         href="https://wa.me/915622230000" 
         target="_blank" 
         rel="noopener noreferrer"
-        className="fixed bottom-8 right-8 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-transform flex items-center justify-center"
+        aria-label="Chat with Taj View Residency on WhatsApp"
+        className="fixed bottom-5 right-5 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-transform flex items-center justify-center md:bottom-8 md:right-8"
       >
         <Phone fill="white" size={24} />
       </a>
-      <style>{`
-        @keyframes zoomOut {
-          from { transform: scale(1.1); }
-          to { transform: scale(1); }
-        }
-        @theme {
-          --color-gold-light: #D4AF37;
-          --color-gold: #B8975A;
-          --color-gold-dark: #8B6F3A;
-          --color-cream: #FAF7F2;
-          --color-charcoal: #1C1814;
-          --font-serif: 'Cormorant Garamond', serif;
-          --font-sans: 'Jost', sans-serif;
-        }
-      `}</style>
     </div>
   );
 };

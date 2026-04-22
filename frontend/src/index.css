@@ -1,8 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500;600;700&display=swap');
-
 @import "tailwindcss";
 
 @theme {
+  --color-gold-light: #D4AF37;
   --color-gold: #B8975A;
   --color-gold-dark: #8B6F3A;
   --color-cream: #FAF7F2;
@@ -12,6 +11,7 @@
 }
 
 :root {
+  --gold-light: #D4AF37;
   --gold: #B8975A;
   --gold-dark: #8B6F3A;
   --cream: #FAF7F2;
@@ -23,8 +23,14 @@
   to { transform: scale(1); }
 }
 
+.hero-zoom {
+  animation: zoomOut 20s linear infinite alternate;
+  will-change: transform;
+}
+
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -33,6 +39,39 @@ body {
   color: var(--charcoal);
   overflow-x: hidden;
   line-height: 1.6;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  max-width: 100%;
+}
+
+a,
+button,
+input,
+select,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button,
+a,
+input,
+select,
+textarea {
+  touch-action: manipulation;
+}
+
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
 }
 
 h1,
@@ -77,12 +116,26 @@ h6 {
   box-shadow: 0 4px 15px rgba(184, 151, 90, 0.4);
   position: relative;
   overflow: hidden;
+  min-height: 48px;
 }
 
 .btn-luxury:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 25px rgba(184, 151, 90, 0.6);
   filter: brightness(1.1);
+}
+
+.btn-luxury:active,
+.btn-luxury-outline:active {
+  transform: translateY(-1px);
+}
+
+.btn-luxury:disabled,
+.btn-luxury-outline:disabled {
+  cursor: not-allowed;
+  filter: grayscale(0.25);
+  opacity: 0.55;
+  transform: none;
 }
 
 .btn-luxury-outline {
@@ -98,6 +151,7 @@ h6 {
   align-items: center;
   justify-content: center;
   background: transparent;
+  min-height: 48px;
 }
 
 .btn-luxury-outline:hover {
@@ -106,12 +160,6 @@ h6 {
   background: linear-gradient(135deg, #D4AF37 0%, #B8975A 100%);
   transform: translateY(-5px);
   box-shadow: 0 10px 25px rgba(184, 151, 90, 0.4);
-}
-
-.btn-luxury-outline:hover {
-  background-color: var(--gold);
-  color: white;
-  transform: translateY(-4px);
 }
 
 /* Navigation */
@@ -214,4 +262,15 @@ footer a:hover {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--gold-dark);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }

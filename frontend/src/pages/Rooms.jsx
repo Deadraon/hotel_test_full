@@ -4,6 +4,8 @@ import { rooms } from '../utils/roomsData';
 import { Link } from 'react-router-dom';
 import { Search, SlidersHorizontal } from 'lucide-react';
 
+const MotionDiv = motion.div;
+
 const Rooms = () => {
   const [filterType, setFilterType] = useState('All');
   const [maxPrice, setMaxPrice] = useState(15000);
@@ -26,7 +28,7 @@ const Rooms = () => {
       <div className="container mx-auto px-6 flex flex-col lg:flex-row gap-12">
         {/* Sidebar Filters */}
         <aside className="w-full lg:w-80 flex-shrink-0">
-          <div className="bg-charcoal p-10 shadow-2xl border border-gold/10 sticky top-28">
+          <div className="bg-charcoal p-6 sm:p-10 shadow-2xl border border-gold/10 lg:sticky lg:top-28">
             <div className="flex items-center gap-3 mb-10 pb-4 border-b border-gold/20">
               <SlidersHorizontal size={20} className="text-gold" />
               <h3 className="font-bold text-sm uppercase tracking-[0.2em] text-white">Filter</h3>
@@ -37,8 +39,10 @@ const Rooms = () => {
               <div className="space-y-4">
                 {['All', 'Deluxe', 'Suite', 'Family', 'Honeymoon'].map(type => (
                   <button 
+                    type="button"
                     key={type}
                     onClick={() => setFilterType(type)}
+                    aria-pressed={filterType === type}
                     className={`block w-full text-left text-sm uppercase tracking-widest transition-all hover:text-gold ${filterType === type ? 'text-gold font-bold translate-x-2' : 'text-white/60'}`}
                   >
                     {type}
@@ -55,7 +59,8 @@ const Rooms = () => {
                 max="15000" 
                 step="500" 
                 value={maxPrice}
-                onChange={(e) => setMaxPrice(parseInt(e.target.value))}
+                onChange={(e) => setMaxPrice(parseInt(e.target.value, 10))}
+                aria-label="Maximum room budget"
                 className="w-full accent-gold cursor-pointer opacity-80 hover:opacity-100 transition-opacity"
               />
               <div className="flex justify-between text-[10px] text-white/30 mt-4 uppercase tracking-tighter">
@@ -71,7 +76,7 @@ const Rooms = () => {
           {filteredRooms.length > 0 ? (
             <div className="grid md:grid-cols-2 gap-8">
               {filteredRooms.map((room, idx) => (
-                <motion.div 
+                <MotionDiv
                   key={room.id}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -83,14 +88,16 @@ const Rooms = () => {
                     <img 
                       src={room.image} 
                       alt={room.name} 
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
                     />
                     <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-4 py-2 font-serif font-bold text-gold-dark shadow-lg">
                       ₹{room.price} <span className="text-[10px] uppercase tracking-tighter text-charcoal/50 font-sans">/ night</span>
                     </div>
                   </div>
-                  <div className="p-10 bg-white">
-                    <div className="flex justify-between items-start mb-6">
+                  <div className="p-6 sm:p-10 bg-white">
+                    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-6">
                       <div>
                         <span className="text-gold text-[10px] uppercase tracking-[0.3em] font-bold block mb-2">{room.type}</span>
                         <h3 className="text-2xl font-bold text-charcoal group-hover:text-gold transition-colors">{room.name}</h3>
@@ -115,7 +122,7 @@ const Rooms = () => {
                       Check Availability
                     </Link>
                   </div>
-                </motion.div>
+                </MotionDiv>
               ))}
             </div>
           ) : (
@@ -123,6 +130,7 @@ const Rooms = () => {
               <Search className="mx-auto text-gold/20 mb-4" size={48} />
               <p className="text-charcoal/40 font-serif italic text-xl">No rooms found matching your criteria.</p>
               <button 
+                type="button"
                 onClick={() => { setFilterType('All'); setMaxPrice(15000); }}
                 className="text-gold font-bold uppercase tracking-widest text-xs mt-6 hover:underline"
               >

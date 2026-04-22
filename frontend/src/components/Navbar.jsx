@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ChevronDown, Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -12,26 +12,45 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
 
-  const [lastScrollY, setLastScrollY] = useState(0);
   const [showNavbar, setShowNavbar] = useState(true);
+  const lastScrollY = useRef(0);
+  const ticking = useRef(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      // Background scrolled state
-      setScrolled(window.scrollY > 50 || location.pathname !== '/');
-      
-      // Hide on scroll down, show on scroll up
-      if (window.scrollY > lastScrollY && window.scrollY > 200) {
-        setShowNavbar(false);
-      } else {
-        setShowNavbar(true);
-      }
-      setLastScrollY(window.scrollY);
+      if (ticking.current) return;
+
+      ticking.current = true;
+      window.requestAnimationFrame(() => {
+        const currentScrollY = window.scrollY;
+
+        setScrolled(currentScrollY > 50 || location.pathname !== '/');
+        setShowNavbar(!(currentScrollY > lastScrollY.current && currentScrollY > 200));
+
+        lastScrollY.current = currentScrollY;
+        ticking.current = false;
+      });
     };
-    
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY, location.pathname]);
+
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      ticking.current = false;
+    };
+  }, [location.pathname]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768 && isOpen) {
+        setIsOpen(false);
+        setExpandedItem(null);
+      }
+    };
+
+    window.addEventListener('resize', handleResize, { passive: true });
+    return () => window.removeEventListener('resize', handleResize);
+  }, [isOpen]);
 
   // Lock body scroll when menu is open
   useEffect(() => {
@@ -54,6 +73,7 @@ const Navbar = () => {
     const handleKeyDown = (event) => {
       if (event.key === 'Escape') {
         setIsOpen(false);
+        setExpandedItem(null);
       }
     };
 

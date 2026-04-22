@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
 import { MapPin, Phone, Mail, Clock, Send } from 'lucide-react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
+
+const API_BASE_URL = import.meta.env.VITE_API_URL || '';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -22,10 +23,10 @@ const Contact = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      await axios.post(`${import.meta.env.VITE_API_URL}/api/contact`, formData);
+      await axios.post(`${API_BASE_URL}/api/contact`, formData);
       toast.success("Message sent! We'll get back to you soon.");
       setFormData({ name: '', email: '', phone: '', subject: 'Room Enquiry', message: '' });
-    } catch (err) {
+    } catch {
       toast.error("Failed to send message. Please try again.");
     } finally {
       setLoading(false);
@@ -67,16 +68,18 @@ const Contact = () => {
 
             <div className="h-[300px] w-full border border-gold/10 grayscale contrast-125">
               <iframe 
+                title="Map showing Taj View Residency contact location"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14192.189543839!2d78.034831!3d27.173891!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39747121d702ff6d%3A0xdd2ae4803f767dde!2sTaj%20Mahal!5e0!3m2!1sen!2sin!4v1700000000000" 
                 className="w-full h-full border-0"
                 allowFullScreen="" 
                 loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
               ></iframe>
             </div>
           </div>
 
           {/* Contact Form */}
-          <div className="bg-white p-12 shadow-2xl border border-gold/10">
+          <div className="bg-white p-6 sm:p-12 shadow-2xl border border-gold/10">
             <h3 className="text-2xl font-bold mb-8">Send a Message</h3>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
@@ -136,6 +139,7 @@ const Contact = () => {
               <button 
                 type="submit" 
                 disabled={loading}
+                aria-busy={loading}
                 className="btn-luxury w-full flex items-center justify-center gap-3 disabled:opacity-50"
               >
                 {loading ? "Sending..." : (

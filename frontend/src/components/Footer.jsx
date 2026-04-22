@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { MapPin, Phone, Mail, Home } from 'lucide-react';
+import { MapPin, Phone, Mail } from 'lucide-react';
 
 const Footer = () => {
+  const currentYear = new Date().getFullYear();
+
   return (
     <footer className="bg-charcoal text-white pt-20 pb-10 border-t border-gold/10">
       <div className="container mx-auto px-6">
@@ -49,19 +51,19 @@ const Footer = () => {
             <h4 className="font-bold text-xs uppercase tracking-[0.2em] mb-8 text-gold">Contact Info</h4>
             <ul className="space-y-4 text-sm text-white/80">
               <li className="flex gap-3"><MapPin size={18} className="text-gold flex-shrink-0" /> Taj Ganj, Agra, UP 282001</li>
-              <li className="flex gap-3"><Phone size={18} className="text-gold flex-shrink-0" /> +91 562 223 0000</li>
-              <li className="flex gap-3"><Mail size={18} className="text-gold flex-shrink-0" /> reservations@tajview.com</li>
+              <li className="flex gap-3"><Phone size={18} className="text-gold flex-shrink-0" /> <a href="tel:+915622230000">+91 562 223 0000</a></li>
+              <li className="flex gap-3 break-all"><Mail size={18} className="text-gold flex-shrink-0" /> <a href="mailto:reservations@tajview.com">reservations@tajview.com</a></li>
             </ul>
           </div>
         </div>
 
-        <div className="border-t border-white/5 pt-10 flex flex-col md:row-reverse justify-between items-center gap-6">
+        <div className="border-t border-white/5 pt-10 flex flex-col md:flex-row-reverse justify-between items-center gap-6">
           <p className="text-[10px] uppercase tracking-widest text-white/30">
-            © 2025 Taj View Residency. All Rights Reserved.
+            &copy; {currentYear} Taj View Residency. All Rights Reserved.
           </p>
           <div className="flex gap-8 text-[10px] uppercase tracking-widest text-white/30">
-            <a href="#" className="hover:text-gold transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-gold transition-colors">Terms of Service</a>
+            <Link to="/contact" className="hover:text-gold transition-colors">Privacy Policy</Link>
+            <Link to="/contact" className="hover:text-gold transition-colors">Terms of Service</Link>
           </div>
         </div>
       </div>

@@ -28,7 +28,7 @@ const AdminLogin = () => {
 
   return (
     <div className="pt-40 pb-20 flex items-center justify-center bg-cream min-h-screen">
-      <div className="bg-white p-12 shadow-2xl border border-gold/10 w-full max-w-md">
+      <div className="bg-white p-6 sm:p-12 shadow-2xl border border-gold/10 w-full max-w-md">
         <div className="text-center mb-10">
           <span className="text-gold uppercase tracking-[0.3em] text-[10px] font-bold mb-4 block">Secure Access</span>
           <h1 className="text-3xl font-bold text-charcoal">Admin Portal</h1>
@@ -41,6 +41,8 @@ const AdminLogin = () => {
               <User className="absolute left-4 top-1/2 -translate-y-1/2 text-gold/40" size={18} />
               <input 
                 type="text" required
+                name="username"
+                autoComplete="username"
                 value={formData.username}
                 onChange={(e) => setFormData({ ...formData, username: e.target.value })}
                 className="w-full bg-cream/50 border border-gold/10 p-4 pl-12 text-sm focus:border-gold outline-none transition-all"
@@ -55,6 +57,8 @@ const AdminLogin = () => {
               <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-gold/40" size={18} />
               <input 
                 type="password" required
+                name="password"
+                autoComplete="current-password"
                 value={formData.password}
                 onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                 className="w-full bg-cream/50 border border-gold/10 p-4 pl-12 text-sm focus:border-gold outline-none transition-all"
@@ -66,6 +70,7 @@ const AdminLogin = () => {
           <button 
             type="submit" 
             disabled={loading}
+            aria-busy={loading}
             className="btn-luxury w-full flex items-center justify-center gap-3 disabled:opacity-50 mt-8"
           >
             {loading ? "Authenticating..." : "Login to Dashboard"}

@@ -30,6 +30,10 @@ router.post('/login', async (req, res) => {
 // @desc    Create first admin account (Use once)
 router.get('/setup', async (req, res) => {
   try {
+    if (process.env.NODE_ENV === 'production' && (!process.env.ADMIN_SETUP_KEY || req.query.key !== process.env.ADMIN_SETUP_KEY)) {
+      return res.status(404).json({ msg: 'Not found' });
+    }
+
     const adminExists = await Admin.findOne({ username: 'admin@tajview.com' });
     if (adminExists) {
       return res.json({ msg: 'Admin account already exists. You can log in.' });

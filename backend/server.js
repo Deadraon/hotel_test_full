@@ -2,14 +2,13 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const bodyParser = require('body-parser');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(cors());
-app.use(bodyParser.json());
+app.use(express.json({ limit: '1mb' }));
 
 // MongoDB Connection (Serverless Optimized)
 const MONGODB_URI = process.env.MONGODB_URI;
@@ -17,6 +16,10 @@ const MONGODB_URI = process.env.MONGODB_URI;
 let isConnected = false;
 const connectDB = async () => {
   if (isConnected) return;
+  if (!MONGODB_URI) {
+    throw new Error('MONGODB_URI is not configured');
+  }
+
   try {
     const db = await mongoose.connect(MONGODB_URI, {
       serverSelectionTimeoutMS: 5000, // Timeout after 5 seconds
@@ -25,44 +28,24 @@ const connectDB = async () => {
     console.log('MongoDB Connected');
   } catch (err) {
     console.error('MongoDB Connection Error:', err.message);
+    throw err;
   }
 };
 
-// Middleware to ensure DB is connected
-app.use(async (req, res, next) => {
-  await connectDB();
-  next();
-});
-
-// Models
-const Booking = require('./models/Booking');
-const Contact = require('./models/Contact');
-const Admin = require('./models/Admin');
+// Middleware to ensure DB is connected for data routes
+const ensureDB = async (req, res, next) => {
+  try {
+    await connectDB();
+    next();
+  } catch {
+    res.status(503).json({ error: 'Database unavailable' });
+  }
+};
 
 // Routes
-app.use('/api/bookings', require('./routes/bookings'));
-app.use('/api/contact', require('./routes/contact'));
-app.use('/api/auth', require('./routes/auth'));
-
-// Direct Setup Route (Emergency fallback)
-app.get('/api/auth/setup', async (req, res) => {
-  try {
-    const Admin = require('./models/Admin');
-    const bcrypt = require('bcryptjs');
-    
-    const adminExists = await Admin.findOne({ username: 'admin@tajview.com' });
-    if (adminExists) return res.json({ msg: 'Admin already exists.' });
-
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash('admin123', salt);
-    const newAdmin = new Admin({ username: 'admin@tajview.com', password: hashedPassword });
-    await newAdmin.save();
-    
-    res.json({ msg: 'Admin created!', user: 'admin@tajview.com', pass: 'admin123' });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
+app.use('/api/bookings', ensureDB, require('./routes/bookings'));
+app.use('/api/contact', ensureDB, require('./routes/contact'));
+app.use('/api/auth', ensureDB, require('./routes/auth'));
 
 app.get('/api/status', async (req, res) => {
   try {
